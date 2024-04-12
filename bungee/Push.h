@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <cassert> // remove
+#include <cassert>
 #include <vector>
 
 #include "Bungee.h"
@@ -11,7 +11,7 @@
 namespace Bungee::Push {
 
 // Bungee::Push::InputBuffer is an optional component that assists users of Bungee::Stretcher
-// n applications where function calls "push" audio downstream.
+// in applications where function calls "push" audio downstream.
 //
 // There are two fundamental philosophies for how function calls propagate audio data
 // when processing streamed audio data:
@@ -36,21 +36,82 @@ namespace Bungee::Push {
 //
 struct InputBuffer
 {
-	struct Implementation;
-	Implementation *const state;
+	std::vector<float> vector;
+	int maxInputFrameCount;
+	int begin = 0;
+	int end = -1;
+	int endRequired = 0;
 
-	InputBuffer(int maxInputFrameCount, int channelCount);
-	~InputBuffer();
+	InputBuffer(int maxInputFrameCount, int channelCount) :
+		vector(maxInputFrameCount * channelCount),
+		maxInputFrameCount(maxInputFrameCount)
+	{
+	}
 
-	void grain(const InputChunk &inputChunk);
+	void grain(const InputChunk &inputChunk)
+	{
+		const bool firstCall = end - begin < 0;
+		if (firstCall)
+		{
+			begin = inputChunk.begin;
+			end = 0;
+		}
 
-	void deliver(int frameCount);
+		const int overlap = end - inputChunk.begin;
+		if (overlap <= 0)
+		{
+			begin = end = inputChunk.begin;
+		}
+		else
+		{
+			const int offset = inputChunk.begin - begin;
 
-	float *inputData();
-	int inputFrameCountRequired() const;
-	int inputFrameCountMax() const;
-	const float *outputData() const;
-	int stride() const;
+			// loop over channels, move lapped segment to start of buffer
+			for (int x = 0; x < (int)vector.size(); x += stride())
+				std::move(
+					&vector[x + offset],
+					&vector[x + offset + overlap],
+					&vector[x]);
+
+			begin = inputChunk.begin;
+		}
+		endRequired = inputChunk.end;
+
+		assert(inputFrameCountRequired() <= inputFrameCountMax());
+		assert(inputFrameCountMax() >= 0);
+	}
+
+	void deliver(int frameCount)
+	{
+		assert(frameCount >= 0);
+		assert(frameCount <= inputFrameCountMax());
+		end += frameCount;
+	}
+
+	float *inputData()
+	{
+		return &vector[end - begin];
+	}
+
+	int inputFrameCountRequired() const
+	{
+		return endRequired - end;
+	}
+
+	int inputFrameCountMax() const
+	{
+		return stride() - (end - begin);
+	}
+
+	const float *outputData() const
+	{
+		return vector.data();
+	}
+
+	int stride() const
+	{
+		return maxInputFrameCount;
+	}
 };
 
 } // namespace Bungee::Push
