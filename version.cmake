@@ -9,7 +9,7 @@ else()
     string(STRIP "${GIT_DESCRIBE}" GIT_DESCRIBE)
 endif()
 
-set(CONTENTS "namespace ${VERSION_NAMESPACE} { const char *version() { return \"${GIT_DESCRIBE}\";} }")
+set(CONTENTS "namespace ${VERSION_NAMESPACE} { const char *versionDescription = \"${GIT_DESCRIBE}\"; }")
 
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/version-backup/version.cpp)
     file(READ ${CMAKE_CURRENT_SOURCE_DIR}/version-backup/version.cpp EXISTING_CONTENTS)

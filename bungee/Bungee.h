@@ -8,9 +8,11 @@
 #include <cmath>
 #include <cstdint>
 
+#define BUNGEE_API __attribute__((visibility("default")))
+
 namespace Bungee {
 
-const char *version();
+BUNGEE_API const char *version();
 
 struct Request
 {
@@ -44,7 +46,7 @@ struct InputChunk
 	// Sample positions relative to the start of the audio track
 	int begin, end;
 
-	int frameCount() const
+	BUNGEE_API int frameCount() const
 	{
 		return end - begin;
 	}
@@ -75,37 +77,37 @@ struct Stretcher
 	struct Implementation;
 	Implementation *const state;
 
-	Stretcher(SampleRates sampleRates, int channelCount);
+	BUNGEE_API Stretcher(SampleRates sampleRates, int channelCount);
 
-	~Stretcher();
+	BUNGEE_API ~Stretcher();
 
 	// Returns the largest number of frames that might be requested by specifyGrain()
 	// This helps the caller to allocate large enough buffers because it is guaranteed that
 	// InputChunk::frameCount() will not exceed this number.
-	int maxInputFrameCount() const;
+	BUNGEE_API int maxInputFrameCount() const;
 
 	// This function adjusts request.position so that the stretcher has a run in of a few
 	// grains before hitting the requested position. Without preroll, the first milliseconds
 	// of audio might sound weak or initial transients might be lost.
-	void preroll(Request &request) const;
+	BUNGEE_API void preroll(Request &request) const;
 
 	// This function prepares request.position and request.reset for the subsequent grain.
 	// Typically called within a granular loop where playback at constant request.speed is desired.
-	void next(Request &request) const;
+	BUNGEE_API void next(Request &request) const;
 
 	// Specify a grain of audio and compute the necessary segment of input audio.
 	// After calling this function, call analyseGrain.
-	InputChunk specifyGrain(const Request &request);
+	BUNGEE_API InputChunk specifyGrain(const Request &request);
 
 	// Begins processing the grain. The audio data should correspond to the range
 	// specified by specifyGrain's return value. After calling this function, call synthesiseGrain.
-	void analyseGrain(const float *data, intptr_t channelStride);
+	BUNGEE_API void analyseGrain(const float *data, intptr_t channelStride);
 
 	// Complete processing of the grain of audio that was previously set up with calls to specifyGrain and analyseGrain.
-	void synthesiseGrain(OutputChunk &outputChunk);
+	BUNGEE_API void synthesiseGrain(OutputChunk &outputChunk);
 
 	// Returns true if every grain in the stretcher's pipeline is invalid (its Request::position was NaN).
-	bool isFlushed() const;
+	BUNGEE_API bool isFlushed() const;
 };
 
 } // namespace Bungee

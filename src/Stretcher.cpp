@@ -8,6 +8,13 @@
 
 namespace Bungee {
 
+extern const char *versionDescription;
+
+const char *version()
+{
+	return versionDescription;
+}
+
 Stretcher::Stretcher(SampleRates sampleRates, int channelCount) :
 	state(new Implementation(sampleRates, channelCount))
 {
