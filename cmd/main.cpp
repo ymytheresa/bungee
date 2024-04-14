@@ -17,7 +17,10 @@ int main(int argc, const char *argv[])
 	CommandLine::Parameters parameters{options, argc, argv, request};
 	CommandLine::Processor processor{parameters, request};
 
-	Bungee::Stretcher<Basic> stretcher(processor.sampleRates, processor.channelCount);
+#ifndef BUNGEE_IMPLEMENTATION
+#	define BUNGEE_IMPLEMENTATION Basic
+#endif
+	Bungee::Stretcher<BUNGEE_IMPLEMENTATION> stretcher(processor.sampleRates, processor.channelCount);
 
 	processor.restart(request);
 	stretcher.preroll(request);
