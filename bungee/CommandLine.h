@@ -30,7 +30,7 @@ struct Options :
 {
 	std::vector<std::string> helpGroups;
 
-	Options(std::string program_name = "bungee", std::string help_string = std::string("Bungee audio speed and pitch changer\n\nVersion: ") + Bungee::Stretcher<Basic>::version() + "\n") :
+	Options(std::string program_name, std::string help_string) :
 		cxxopts::Options(program_name, help_string)
 	{
 		add_options() //

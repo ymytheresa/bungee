@@ -1,7 +1,6 @@
 // Copyright (C) 2024 Parabola Research Limited
 // SPDX-License-Identifier: MPL-2.0
 
-#include "bungee/../src/log2.h"
 #include "bungee/Bungee.h"
 #include "bungee/CommandLine.h"
 
@@ -11,15 +10,17 @@ int main(int argc, const char *argv[])
 
 	Request request{};
 
-	constexpr int log2SynthesisHop = 9;
-
-	CommandLine::Options options;
-	CommandLine::Parameters parameters{options, argc, argv, request};
-	CommandLine::Processor processor{parameters, request};
-
 #ifndef BUNGEE_IMPLEMENTATION
 #	define BUNGEE_IMPLEMENTATION Basic
 #endif
+#define XSTR(a) STR(a)
+#define STR(A) #A
+	static const auto helpString = std::string("Bungee " XSTR(BUNGEE_IMPLEMENTATION)) + " audio speed and pitch changer\n\nVersion: " + Bungee::Stretcher<BUNGEE_IMPLEMENTATION>::version() + "\n";
+
+	CommandLine::Options options{"<bungee-command>", helpString};
+	CommandLine::Parameters parameters{options, argc, argv, request};
+	CommandLine::Processor processor{parameters, request};
+
 	Bungee::Stretcher<BUNGEE_IMPLEMENTATION> stretcher(processor.sampleRates, processor.channelCount);
 
 	processor.restart(request);
