@@ -32,7 +32,7 @@ InputChunk Grain::specify(const Request &r, Grain &previous, SampleRates sampleR
 
 	const Assert::FloatingPointExceptions floatingPointExceptions(FE_INEXACT);
 
-	const auto unitHop = (1 << log2SynthesisHop) * resampleOperations.setup(sampleRates, request.resampleMode, request.pitch);
+	const auto unitHop = (1 << log2SynthesisHop) * resampleOperations.setup(sampleRates, request.pitch);
 
 	requestHop = request.position - previous.request.position;
 	if (std::isnan(requestHop) || request.reset)

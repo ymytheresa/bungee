@@ -3,16 +3,9 @@
 
 #pragma once
 
-#include "Modes.h"
-
-#include <cmath>
 #include <cstdint>
 
-#define BUNGEE_API __attribute__((visibility("default")))
-
 namespace Bungee {
-
-BUNGEE_API const char *version();
 
 struct Request
 {
@@ -30,23 +23,15 @@ struct Request
 
 	// Set to have the stretcher forget all previous grains and restart on this grain.
 	bool reset;
-
-#define X_BEGIN(Type, type) Type##Mode type##Mode;
-#define X_ITEM(Type, type, mode, description)
-#define X_END(Type, type)
-	BUNGEE_MODES
-#undef X_BEGIN
-#undef X_ITEM
-#undef X_END
 };
 
 // Information to describe a chunk of  audio required as input
 struct InputChunk
 {
-	// Sample positions relative to the start of the audio track
+	// Frame offsets relative to the start of the audio track
 	int begin, end;
 
-	BUNGEE_API int frameCount() const
+	int frameCount() const
 	{
 		return end - begin;
 	}
@@ -56,58 +41,65 @@ struct InputChunk
 // Output chunks do not overlap and can be appended for seamless playback
 struct OutputChunk
 {
-	float *data; // audio output data, not aligned
+	float *data; // audio output data, not aligned and not interleaved
 	int frameCount;
-	intptr_t channelStride;
+	intptr_t channelStride; // nth audio channel audio starts at data[n * channelStride]
 
 	static constexpr int begin = 0, end = 1;
 	Request *request[2 /* 0=begin, 1=end */];
 };
 
+// Stretcher audio sample rates, in Hz
 struct SampleRates
 {
 	int input;
 	int output;
 };
 
-struct Configuration;
-
+template <class Implementation>
 struct Stretcher
 {
-	struct Implementation;
-	Implementation *const state;
+	Implementation *const implementation;
 
-	BUNGEE_API Stretcher(SampleRates sampleRates, int channelCount);
+	static const char *version();
 
-	BUNGEE_API ~Stretcher();
+	Stretcher(SampleRates sampleRates, int channelCount);
+
+	~Stretcher();
 
 	// Returns the largest number of frames that might be requested by specifyGrain()
 	// This helps the caller to allocate large enough buffers because it is guaranteed that
 	// InputChunk::frameCount() will not exceed this number.
-	BUNGEE_API int maxInputFrameCount() const;
+	int maxInputFrameCount() const;
 
 	// This function adjusts request.position so that the stretcher has a run in of a few
 	// grains before hitting the requested position. Without preroll, the first milliseconds
 	// of audio might sound weak or initial transients might be lost.
-	BUNGEE_API void preroll(Request &request) const;
+	void preroll(Request &request) const;
 
 	// This function prepares request.position and request.reset for the subsequent grain.
 	// Typically called within a granular loop where playback at constant request.speed is desired.
-	BUNGEE_API void next(Request &request) const;
+	void next(Request &request) const;
 
 	// Specify a grain of audio and compute the necessary segment of input audio.
 	// After calling this function, call analyseGrain.
-	BUNGEE_API InputChunk specifyGrain(const Request &request);
+	InputChunk specifyGrain(const Request &request);
 
 	// Begins processing the grain. The audio data should correspond to the range
 	// specified by specifyGrain's return value. After calling this function, call synthesiseGrain.
-	BUNGEE_API void analyseGrain(const float *data, intptr_t channelStride);
+	void analyseGrain(const float *data, intptr_t channelStride);
 
 	// Complete processing of the grain of audio that was previously set up with calls to specifyGrain and analyseGrain.
-	BUNGEE_API void synthesiseGrain(OutputChunk &outputChunk);
+	void synthesiseGrain(OutputChunk &outputChunk);
 
 	// Returns true if every grain in the stretcher's pipeline is invalid (its Request::position was NaN).
-	BUNGEE_API bool isFlushed() const;
+	bool isFlushed() const;
 };
+
+// Stretcher<Basic> is the open-source implementation contained in this repository
+struct Basic;
+
+// Stretcher<Pro> is an enhanced and optimised implementation that is available under commercial license
+struct Pro;
 
 } // namespace Bungee

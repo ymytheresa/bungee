@@ -10,14 +10,14 @@
 
 namespace Bungee {
 
-struct Stretcher::Implementation :
+struct Basic :
 	Timing
 {
 	Input input;
 	Grains grains;
 	Output output;
 
-	Implementation(SampleRates sampleRates, int channelCount);
+	Basic(SampleRates sampleRates, int channelCount);
 
 	InputChunk specifyGrain(const Request &request);
 

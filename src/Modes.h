@@ -15,19 +15,21 @@
 	X_END(Resample, resample)
 
 #define BUNGEE_MODES \
-	BUNGEE_MODES_RESAMPLE \
-	//
+	BUNGEE_MODES_RESAMPLE
+//
 
 namespace Bungee {
 
 #define X_BEGIN(Type, type) \
-	enum class Type##Mode \
-	{
+	struct Type##Mode \
+	{ \
+		enum Enum \
+		{
 #define X_ITEM(Type, type, mode, description) \
 	mode,
 #define X_END(Type, type) \
-	} \
-	;
+		}; \
+	};
 
 BUNGEE_MODES
 

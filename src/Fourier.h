@@ -15,7 +15,7 @@
 #include <vector>
 
 namespace Bungee {
-const char *version();
+extern const char *versionDescription;
 }
 
 namespace Bungee::Fourier {
@@ -36,7 +36,9 @@ inline constexpr int binCount(int log2TransformLength)
 template <typename Scalar>
 inline Scalar uninitialisedValue()
 {
-	return *(Scalar *)version();
+	// This value changes at every commit.
+	// So any usage of uninitialised values in computations should be detected as a change in output.
+	return *(Scalar *)versionDescription;
 }
 
 template <>

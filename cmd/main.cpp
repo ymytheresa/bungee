@@ -17,7 +17,7 @@ int main(int argc, const char *argv[])
 	CommandLine::Parameters parameters{options, argc, argv, request};
 	CommandLine::Processor processor{parameters, request};
 
-	Stretcher stretcher(processor.sampleRates, processor.channelCount);
+	Bungee::Stretcher<Basic> stretcher(processor.sampleRates, processor.channelCount);
 
 	processor.restart(request);
 	stretcher.preroll(request);

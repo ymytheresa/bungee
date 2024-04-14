@@ -4,6 +4,8 @@
 #pragma once
 
 #include "Assert.h"
+#include "Modes.h"
+
 #include "bungee/Bungee.h"
 
 #include <Eigen/Dense>
@@ -178,7 +180,7 @@ struct Operations
 {
 	Operation input, output;
 
-	double setup(const SampleRates &sampleRates, ResampleMode resampleMode, double pitch)
+	double setup(const SampleRates &sampleRates, double pitch, ResampleMode::Enum resampleMode = {})
 	{
 		const double resampleRatio = pitch * sampleRates.input / sampleRates.output;
 		input.ratio = 1.f / resampleRatio;

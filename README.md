@@ -47,7 +47,7 @@ For a working example of this API, see  [cmd/main.cpp](./cmd/main.cpp).
 
 ### Instantiation
 
-To instantiate, include the [bungee/Bungee.h](./bungee/Bungee.h) header file, create a `Stretcher` object and initialise a `Request` object:
+To instantiate, include the [bungee/Bungee.h](./bungee/Bungee.h) header file, create a `Stretcher<Basic>` object and initialise a `Request` object:
 
 ``` C++
 #include "Bungee.h"
@@ -55,7 +55,7 @@ To instantiate, include the [bungee/Bungee.h](./bungee/Bungee.h) header file, cr
 
 const int sampleRate = 44100;
 
-Bungee::Stretcher stretcher({sampleRate, sampleRate}, 2);
+Bungee::Stretcher<Bungee::Basic> stretcher({sampleRate, sampleRate}, 2);
 
 Bungee::Request request{};
 
@@ -75,7 +75,7 @@ stretcher.preroll(request);
 
 ### Granular loop
 
-`Stretcher`'s processing functions are typically called from within a loop, each iteration of which corresponds to a grain of audio. For each grain, the functions `Stretcher::specifiyGrain`, `Stretcher::analyseGain` and `Stretcher::synthesiseGrain` should be called in sequence.
+`Stretcher`'s processing functions are typically called from within a loop, each iteration of which corresponds to a grain of audio. For each grain, the functions `Stretcher<Basic>::specifiyGrain`, `Stretcher<Basic>::analyseGain` and `Stretcher<Basic>::synthesiseGrain` should be called in sequence.
 ```C++
 while (true)
 {
@@ -110,9 +110,9 @@ while (true)
 
 * `Request::position` is a timestamp, it defines the grain centre point in terms of an input audio frame offset. It is the primary control for speed adjustments and is also the driver for seek and scrub operations. The caller is responsible for deciding  `Request::position` for each grain. 
 
-* The caller owns the input audio buffer and must provide the audio segment indicated by `InputChunk`. Successive grains' input audio chunks may overlap. The `Stretcher` instance reads in the input chunk data when `Stretcher::analyseGrain` is called.
+* The caller owns the input audio buffer and must provide the audio segment indicated by `InputChunk`. Successive grains' input audio chunks may overlap. The `Stretcher<Basic>` instance reads in the input chunk data when `Stretcher<Basic>::analyseGrain` is called.
 
-* The `Stretcher` instance owns the output audio buffer. It is valid from when `Stretcher::synthesiseGrain` returns up until `Stretcher::synthesiseGrain` is called for the subsequent grain. Output audio chunks do not overlap: they should be concatenated to produce an output audio stream.
+* The `Stretcher<Basic>` instance owns the output audio buffer. It is valid from when `Stretcher<Basic>::synthesiseGrain` returns up until `Stretcher<Basic>::synthesiseGrain` is called for the subsequent grain. Output audio chunks do not overlap: they should be concatenated to produce an output audio stream.
 
 * Output audio is timestamped. The original `Request` objects corresponding to the start and end of the chunk are provided by `OutputChunk`.
 

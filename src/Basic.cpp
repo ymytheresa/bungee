@@ -1,7 +1,7 @@
 // Copyright (C) 2020-2024 Parabola Research Limited
 // SPDX-License-Identifier: MPL-2.0
 
-#include "Stretcher.h"
+#include "Basic.h"
 #include "Resample.h"
 #include "Synthesis.h"
 #include "log2.h"
@@ -10,57 +10,31 @@ namespace Bungee {
 
 extern const char *versionDescription;
 
-const char *version()
+template <>
+const char *Stretcher<Basic>::version()
 {
 	return versionDescription;
 }
 
-Stretcher::Stretcher(SampleRates sampleRates, int channelCount) :
-	state(new Implementation(sampleRates, channelCount))
+template <>
+void Stretcher<Basic>::analyseGrain(const float *data, intptr_t channelStride)
 {
+	implementation->analyseGrain(data, channelStride);
 }
 
-Stretcher::~Stretcher()
+template <>
+void Stretcher<Basic>::synthesiseGrain(OutputChunk &outputChunk)
 {
-	delete state;
+	implementation->synthesiseGrain(outputChunk);
 }
 
-InputChunk Stretcher::specifyGrain(const Request &request)
+template <>
+bool Stretcher<Basic>::isFlushed() const
 {
-	return state->specifyGrain(request);
+	return implementation->grains.flushed();
 }
 
-int Stretcher::maxInputFrameCount() const
-{
-	return state->maxInputFrameCount(true);
-}
-
-void Stretcher::preroll(Request &request) const
-{
-	state->preroll(request);
-}
-
-void Stretcher::next(Request &request) const
-{
-	state->next(request);
-}
-
-void Stretcher::analyseGrain(const float *data, intptr_t channelStride)
-{
-	state->analyseGrain(data, channelStride);
-}
-
-void Stretcher::synthesiseGrain(OutputChunk &outputChunk)
-{
-	state->synthesiseGrain(outputChunk);
-}
-
-bool Stretcher::isFlushed() const
-{
-	return state->grains.flushed();
-}
-
-Stretcher::Implementation::Implementation(SampleRates sampleRates, int channelCount) :
+Basic::Basic(SampleRates sampleRates, int channelCount) :
 	Timing(sampleRates),
 	input(log2SynthesisHop, channelCount),
 	grains(4),
@@ -70,7 +44,7 @@ Stretcher::Implementation::Implementation(SampleRates sampleRates, int channelCo
 		grain = std::make_unique<Grain>(log2SynthesisHop, channelCount);
 }
 
-InputChunk Stretcher::Implementation::specifyGrain(const Request &request)
+InputChunk Basic::specifyGrain(const Request &request)
 {
 	const Assert::FloatingPointExceptions floatingPointExceptions(0);
 
@@ -81,7 +55,7 @@ InputChunk Stretcher::Implementation::specifyGrain(const Request &request)
 	return grain.specify(request, previous, sampleRates, log2SynthesisHop);
 }
 
-void Stretcher::Implementation::analyseGrain(const float *data, std::ptrdiff_t stride)
+void Basic::analyseGrain(const float *data, std::ptrdiff_t stride)
 {
 	const Assert::FloatingPointExceptions floatingPointExceptions(FE_INEXACT | FE_UNDERFLOW | FE_DENORMALOPERAND);
 
@@ -116,7 +90,7 @@ void Stretcher::Implementation::analyseGrain(const float *data, std::ptrdiff_t s
 	}
 }
 
-void Stretcher::Implementation::synthesiseGrain(OutputChunk &outputChunk)
+void Basic::synthesiseGrain(OutputChunk &outputChunk)
 {
 	const Assert::FloatingPointExceptions floatingPointExceptions(FE_INEXACT);
 
@@ -153,6 +127,42 @@ void Stretcher::Implementation::synthesiseGrain(OutputChunk &outputChunk)
 
 	outputChunk.request[OutputChunk::begin] = &grains[2].request;
 	outputChunk.request[OutputChunk::end] = &grains[1].request;
+}
+
+template <>
+Stretcher<Basic>::Stretcher(SampleRates sampleRates, int channelCount) :
+	implementation(new Basic(sampleRates, channelCount))
+{
+}
+
+template <>
+Stretcher<Basic>::~Stretcher()
+{
+	delete implementation;
+}
+
+template <>
+InputChunk Stretcher<Basic>::specifyGrain(const Request &request)
+{
+	return implementation->specifyGrain(request);
+}
+
+template <>
+int Stretcher<Basic>::maxInputFrameCount() const
+{
+	return implementation->maxInputFrameCount(true);
+}
+
+template <>
+void Stretcher<Basic>::preroll(Request &request) const
+{
+	implementation->preroll(request);
+}
+
+template <>
+void Stretcher<Basic>::next(Request &request) const
+{
+	implementation->next(request);
 }
 
 } // namespace Bungee

@@ -9,6 +9,7 @@ project(bungee)
 
 add_library(libbungee STATIC
   src/Synthesis.cpp
+  src/Basic.cpp
   src/Fourier.cpp
   src/Fourier.cpp
   src/Grain.cpp
@@ -18,7 +19,6 @@ add_library(libbungee STATIC
   src/Partials.cpp
   src/Resample.cpp
   src/Stretch.cpp
-  src/Stretcher.cpp
   src/Timing.cpp
   src/Window.cpp
   src/Assert.cpp
