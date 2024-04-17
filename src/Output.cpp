@@ -17,7 +17,7 @@ Output::Output(int log2SynthesisHop, int channelCount, int maxOutputChunkSize, f
 
 void Output::applySynthesisWindow(int log2SynthesisHop, Grains &grains, const Eigen::Ref<const Eigen::ArrayXf> &window)
 {
-	const auto quadrantSize = window.rows() / 4;
+	const auto quadrantSize = (int)window.rows() / 4;
 	const auto hopsPerTransform = 1 << (grains[0].log2TransformLength - log2SynthesisHop);
 
 	grains[0].segment.bufferLapped.frameCount = 0;
@@ -85,7 +85,7 @@ inline OutputChunk Output::Segment::outputChunk(Eigen::Ref<Eigen::ArrayXXf> ref,
 
 	OutputChunk outputChunk{};
 	outputChunk.data = ref.data();
-	outputChunk.frameCount = ref.rows();
+	outputChunk.frameCount = (int)ref.rows();
 	outputChunk.channelStride = ref.stride();
 	return outputChunk;
 }

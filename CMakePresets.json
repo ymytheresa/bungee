@@ -11,16 +11,15 @@
             "hidden": true,
             "generator": "Ninja",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
                 "BUNGEE_SELF_TEST": "0",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/bungee/"
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
         },
         {
             "name": "windows-x86_64",
             "inherits": "base",
             "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_SYSTEM_NAME": "Windows",
                 "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc-posix",
                 "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++-posix",
@@ -33,7 +32,10 @@
         },
         {
             "name": "linux-x86_64",
-            "inherits": "base"
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
         },
         {
             "name": "android",
@@ -41,8 +43,9 @@
             "inherits": "base",
             "toolchainFile": "$env{ANDROID_NDK}/build/cmake/android.toolchain.cmake",
             "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
                 "ANDROID_TOOLCHAIN": "clang",
-                "ANDROID_STL": "c++_static",
+                "ANDROID_STL": "c++_shared",
                 "BUILD_SHARED_LIBS": "false"
             }
         },
@@ -76,6 +79,58 @@
             "cacheVariables": {
                 "ANDROID_ABI": "x86_64",
                 "ANDROID_PLATFORM": "android-21"
+            }
+        },
+        {
+            "name": "apple",
+            "hidden": true,
+            "inherits": "base",
+            "generator": "Xcode",
+            "toolchainFile": "${sourceDir}/submodules/ios-cmake/ios.toolchain.cmake",
+            "cacheVariables": {
+                "NAMED_LANGUAGE_SUPPORT": "ON",
+                "ENABLE_BITCODE": "OFF",
+                "ENABLE_ARC": "ON",
+                "ENABLE_VISIBILITY": "OFF",
+                "ENABLE_STRICT_TRY_COMPILE": "OFF"
+            }
+        },
+        {
+            "name": "apple-mac-arm64",
+            "inherits": "apple",
+            "cacheVariables": {
+                "PLATFORM": "MAC_ARM64"
+            }
+        },
+        {
+            "name": "apple-mac-x86_64",
+            "inherits": "apple",
+            "cacheVariables": {
+                "PLATFORM": "MAC"
+            }
+        },
+        {
+            "name": "apple-ios",
+            "hidden": true,
+            "inherits": "apple",
+            "cacheVariables": {
+                "DEPLOYMENT_TARGET": "12.0",
+                "CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER": "com.parabolaresearch.bungee",
+                "CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED": "NO"
+            }
+        },
+        {
+            "name": "apple-ios-arm64",
+            "inherits": "apple-ios",
+            "cacheVariables": {
+                "PLATFORM": "OS64COMBINED"
+            }
+        },
+        {
+            "name": "apple-ios-x86_64",
+            "inherits": "apple-ios",
+            "cacheVariables": {
+                "PLATFORM": "SIMULATOR64"
             }
         }
     ]

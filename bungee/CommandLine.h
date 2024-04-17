@@ -257,7 +257,7 @@ struct Processor
 	template <typename Sample>
 	bool writeSamples(Bungee::OutputChunk chunk)
 	{
-		const int count = std::min<int>(chunk.frameCount * channelCount, (wavData.end() - o) / sizeof(Sample));
+		const int count = std::min<int>(chunk.frameCount * channelCount, int((wavData.end() - o) / sizeof(Sample)));
 
 		for (int f = 0; f < count / channelCount; ++f)
 			for (int c = 0; c < channelCount; ++c)

@@ -137,14 +137,14 @@ struct Cache :
 	{
 		std::scoped_lock lock(preparationMutex);
 		if (!table[log2Length].forward())
-			table[log2Length].forward(new K::Forward(log2Length));
+			table[log2Length].forward(new typename K::Forward(log2Length));
 	}
 
 	void prepareInverse(int log2Length) override
 	{
 		std::scoped_lock lock(preparationMutex);
 		if (!table[log2Length].inverse())
-			table[log2Length].inverse(new K::Inverse(log2Length));
+			table[log2Length].inverse(new typename K::Inverse(log2Length));
 	}
 
 	void forward(int log2TransformLength, const Eigen::Ref<const Eigen::ArrayXXf> &t, Eigen::Ref<Eigen::ArrayXXcf> f) const override

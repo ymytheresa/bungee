@@ -144,7 +144,7 @@ inline int resample(Padded &fixedBuffer, float &fixedBufferOffset, Ref variableB
 	if (truncate)
 	{
 		BUNGEE_ASSERT1(!"Resample::resample: variableBuffer is too short");
-		variableFrameCount = variableBuffer.rows();
+		variableFrameCount = (int)variableBuffer.rows();
 	}
 
 	if (alignEnd)

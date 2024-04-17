@@ -38,10 +38,9 @@ jobs:
               --preset ${PRESET} \
               -S ${{github.workspace}}/bungee \
               -B ${{github.workspace}}/builds/${PRESET} \
-              -D BUNGEE_ABI_NAME=${PRESET} \
               -D CMAKE_INSTALL_PREFIX=${{github.workspace}}/ubuntu/ \
+              -D BUNGEE_ABI_NAME=${PRESET} \
               -G "Unix Makefiles"
-            echo cmake --build --target install ${{github.workspace}}/builds/${PRESET}/
             cmake \
               --build ${{github.workspace}}/builds/${PRESET}/ \
               --target install 
@@ -57,23 +56,52 @@ jobs:
     runs-on: macos-latest
     needs: build_ubuntu
     steps:
+      
+      - name: 🛒 Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+          path: bungee
 
-    - name: 🪂 Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: ubuntu-latest-install 
-        path: ${{github.workspace}}/ubuntu/
+      - name: 🪂 Download artifact that was built un Ubuntu
+        uses: actions/download-artifact@v4
+        with:
+          name: ubuntu-latest-install 
+          path: ${{github.workspace}}/bungee-${{ github.ref_name }}
 
-    - name: 🗜️Prepare archive
-      run: |
-        mv ${{github.workspace}}/ubuntu ${{github.workspace}}/bungee-${{ github.ref_name }}
-        tar -czf ${{github.workspace}}/bungee-${{ github.ref_name }}.tgz -C ${{github.workspace}} bungee-${{ github.ref_name }}
+      - name: 🛠️ Configure, build and install Apple presets
+        env:
+          CMAKE_BUILD_PARALLEL_LEVEL: 2
+        run: |
+          for PRESET in \
+            apple-mac-arm64  \
+            apple-mac-x86_64  \
+            apple-ios-arm64  \
+            apple-ios-x86_64  \
+            ; do
+            cmake \
+              --preset ${PRESET} \
+              -S ${{github.workspace}}/bungee \
+              -B ${{github.workspace}}/builds/${PRESET} \
+              -D CMAKE_INSTALL_PREFIX=${{github.workspace}}/bungee-${{ github.ref_name }} \
+              -D BUNGEE_ABI_NAME=${PRESET}
+            cmake \
+              --build ${{github.workspace}}/builds/${PRESET} \
+              --config Release
+            cmake \
+              --install ${{github.workspace}}/builds/${PRESET}
+          done
 
-    - name: ⭐Create release
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        gh release create "${{ github.ref_name }}" \
-            --repo="${{ github.repository }}" \
-            --title="Bungee ${{ github.ref_name }}" \
-            ${{github.workspace}}/bungee-${{ github.ref_name }}.tgz
+      - name: 🗜️ Prepare archive
+        run: |
+          tar -czf ${{github.workspace}}/bungee-${{ github.ref_name }}.tgz -C ${{github.workspace}} bungee-${{ github.ref_name }}
+
+      - name: ⭐ Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+              --repo="${{ github.repository }}" \
+              --title="Bungee ${{ github.ref_name }}" \
+              ${{github.workspace}}/bungee-${{ github.ref_name }}.tgz

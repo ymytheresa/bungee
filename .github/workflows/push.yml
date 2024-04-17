@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
           path: bungee
 
-      - name: 🛠️ Configure, build and install presets
+      - name: 🛠️ Configure, build and install linux-x86_64
         env:
           CMAKE_BUILD_PARALLEL_LEVEL: 2
           PRESET: linux-x86_64
