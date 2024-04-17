@@ -23,6 +23,7 @@ jobs:
       - name: 🛠️ Configure, build and install presets
         env:
           CMAKE_BUILD_PARALLEL_LEVEL: 2
+          ANDROID_NDK: /usr/local/lib/android/sdk/ndk/26.3.11579264
         run: |
           sudo apt-get -y install mingw-w64
           for PRESET in \
