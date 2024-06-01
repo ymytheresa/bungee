@@ -10,8 +10,8 @@
 
 namespace Bungee {
 
-Timing::Timing(SampleRates sampleRates) :
-	log2SynthesisHop(log2<true>(sampleRates.input) - 6),
+Timing::Timing(SampleRates sampleRates, int log2SynthesisHopOverride) :
+	log2SynthesisHop(log2SynthesisHopOverride ? log2SynthesisHopOverride : log2<true>(sampleRates.input) - 6),
 	sampleRates(sampleRates)
 {
 }

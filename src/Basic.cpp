@@ -34,8 +34,8 @@ bool Stretcher<Basic>::isFlushed() const
 	return implementation->grains.flushed();
 }
 
-Basic::Basic(SampleRates sampleRates, int channelCount) :
-	Timing(sampleRates),
+Basic::Basic(SampleRates sampleRates, int channelCount, int log2SynthesisHopOverride) :
+	Timing(sampleRates, log2SynthesisHopOverride),
 	input(log2SynthesisHop, channelCount),
 	grains(4),
 	output(log2SynthesisHop, channelCount, maxOutputFrameCount(true), 0.25f, {1.f, 0.5f})
@@ -130,8 +130,8 @@ void Basic::synthesiseGrain(OutputChunk &outputChunk)
 }
 
 template <>
-Stretcher<Basic>::Stretcher(SampleRates sampleRates, int channelCount) :
-	implementation(new Basic(sampleRates, channelCount))
+Stretcher<Basic>::Stretcher(SampleRates sampleRates, int channelCount, int log2SynthesisHop) :
+	implementation(new Basic(sampleRates, channelCount, log2SynthesisHop))
 {
 }
 

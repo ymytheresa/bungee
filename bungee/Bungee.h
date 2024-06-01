@@ -63,7 +63,7 @@ struct Stretcher
 
 	static const char *version();
 
-	Stretcher(SampleRates sampleRates, int channelCount);
+	Stretcher(SampleRates sampleRates, int channelCount, int log2SynthesisHopOverride = 0);
 
 	~Stretcher();
 

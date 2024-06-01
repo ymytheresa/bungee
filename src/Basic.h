@@ -17,7 +17,7 @@ struct Basic :
 	Grains grains;
 	Output output;
 
-	Basic(SampleRates sampleRates, int channelCount);
+	Basic(SampleRates sampleRates, int channelCount, int log2SynthesisHopOverride);
 
 	InputChunk specifyGrain(const Request &request);
 
