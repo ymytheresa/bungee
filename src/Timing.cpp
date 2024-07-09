@@ -8,6 +8,8 @@
 
 #include "bungee/Bungee.h"
 
+#include <cstdint>
+
 namespace Bungee {
 
 Timing::Timing(SampleRates sampleRates, int log2SynthesisHopOverride) :
@@ -22,13 +24,13 @@ static constexpr auto maxPitchOctaves = 2;
 
 int Timing::maxInputFrameCount(bool mayDownsampleInput) const
 {
-	const auto max = (sampleRates.input << (maxPitchOctaves + log2SynthesisHop + 3)) / sampleRates.output;
+	const auto max = (int64_t(sampleRates.input) << (maxPitchOctaves + log2SynthesisHop + 3)) / sampleRates.output;
 	return max + 1;
 }
 
 int Timing::maxOutputFrameCount(bool mayUpsampleOutput) const
 {
-	const auto max = (sampleRates.output << (maxPitchOctaves + log2SynthesisHop)) / sampleRates.input;
+	const auto max = (int64_t(sampleRates.output) << (maxPitchOctaves + log2SynthesisHop)) / sampleRates.input;
 	return max + 1;
 }
 
