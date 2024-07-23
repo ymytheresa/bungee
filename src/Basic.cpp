@@ -68,7 +68,7 @@ void Basic::analyseGrain(const float *data, std::ptrdiff_t stride)
 
 		auto log2TransformLength = input.applyAnalysisWindow(ref);
 
-		Fourier::transforms.forward(log2TransformLength, input.windowedInput, grain.transformed);
+		Fourier::transforms->forward(log2TransformLength, input.windowedInput, grain.transformed);
 
 		const auto n = Fourier::binCount(grain.log2TransformLength) - 1;
 		grain.validBinCount = std::min<int>(std::ceil(n / grain.resampleOperations.output.ratio), n) + 1;
@@ -112,7 +112,7 @@ void Basic::synthesiseGrain(OutputChunk &outputChunk)
 		else
 			grain.transformed.topRows(grain.validBinCount).colwise() *= t;
 
-		Fourier::transforms.inverse(grain.log2TransformLength, output.inverseTransformed, grain.transformed);
+		Fourier::transforms->inverse(grain.log2TransformLength, output.inverseTransformed, grain.transformed);
 	}
 
 	output.applySynthesisWindow(log2SynthesisHop, grains, output.synthesisWindow);

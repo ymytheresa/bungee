@@ -22,8 +22,8 @@ Eigen::ArrayXf fromFrequencyDomainCoefficients(int log2Size, float gain, std::in
 	frequencyDomain.bottomRows(frequencyDomain.rows() - i).setZero();
 
 	Eigen::ArrayXf window(1 << log2Size);
-	Fourier::transforms.prepareInverse(log2Size);
-	Fourier::transforms.inverse(log2Size, window, frequencyDomain);
+	Fourier::transforms->prepareInverse(log2Size);
+	Fourier::transforms->inverse(log2Size, window, frequencyDomain);
 	return window;
 }
 

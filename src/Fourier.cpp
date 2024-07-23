@@ -57,7 +57,13 @@ void Kiss::Kernel<isInverse>::inverse(int, float *t, std::complex<float> *f) con
 	kiss_fftri((kiss_fftr_cfg)implementation, (kiss_fft_cpx *)f, t);
 }
 
-static Fourier::Cache<Kiss, 16> cache;
-Transforms &transforms = cache;
+Transforms *transforms{};
+
+Bootstrap::Bootstrap()
+{
+	BUNGEE_ASSERT1(!transforms);
+	static Fourier::Cache<Kiss, 16> cache;
+	BUNGEE_ASSERT1(transforms == &cache);
+}
 
 } // namespace Bungee::Fourier

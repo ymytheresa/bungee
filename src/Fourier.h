@@ -74,7 +74,7 @@ struct Transforms
 	virtual void inverse(int log2TransformLength, Eigen::Ref<Eigen::ArrayXXf> t, const Eigen::Ref<const Eigen::ArrayXXcf> &f) const = 0;
 };
 
-extern Transforms &transforms;
+extern Transforms *transforms;
 
 // General case when an FFT implementation has different states for forward and reverse transforms of same size.
 template <class F, class I>
@@ -133,6 +133,11 @@ struct Cache :
 
 	Table table;
 
+	Cache()
+	{
+		transforms = this;
+	}
+
 	void prepareForward(int log2Length) override
 	{
 		std::scoped_lock lock(preparationMutex);
@@ -170,6 +175,11 @@ struct Cache :
 		for (int c = 0; c < f.cols(); ++c)
 			kernel.inverse(log2TransformLength, t.col(c).topRows(transformLength).data(), (std::complex<float> *)f.col(c).topRows(transformLength / 2 + 1).data());
 	}
+};
+
+struct Bootstrap
+{
+	Bootstrap();
 };
 
 } // namespace Bungee::Fourier

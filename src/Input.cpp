@@ -19,7 +19,7 @@ Input::Input(int log2SynthesisHop, int channelCount) :
 	windowedInput{(8 << log2SynthesisHop), channelCount}
 {
 	windowedInput.setZero();
-	Fourier::transforms.prepareForward(log2SynthesisHop + 3);
+	Fourier::transforms->prepareForward(log2SynthesisHop + 3);
 }
 
 int Input::applyAnalysisWindow(const Eigen::Ref<const Eigen::ArrayXXf> &input)

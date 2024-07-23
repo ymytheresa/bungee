@@ -12,7 +12,7 @@ Output::Output(int log2SynthesisHop, int channelCount, int maxOutputChunkSize, f
 	inverseTransformed(8 << log2SynthesisHop, channelCount),
 	bufferResampled(maxOutputChunkSize, channelCount)
 {
-	Fourier::transforms.prepareInverse(log2SynthesisHop + 3);
+	Fourier::transforms->prepareInverse(log2SynthesisHop + 3);
 }
 
 void Output::applySynthesisWindow(int log2SynthesisHop, Grains &grains, const Eigen::Ref<const Eigen::ArrayXf> &window)

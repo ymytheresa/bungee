@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Fourier.h"
 #include "Grains.h"
 #include "Input.h"
 #include "Output.h"
@@ -11,6 +12,7 @@
 namespace Bungee {
 
 struct Basic :
+	Fourier::Bootstrap,
 	Timing
 {
 	Input input;
