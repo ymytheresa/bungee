@@ -7,12 +7,12 @@
 
 namespace Bungee {
 
-Output::Output(int log2SynthesisHop, int channelCount, int maxOutputChunkSize, float windowGain, std::initializer_list<float> windowCoefficients) :
-	synthesisWindow{Window::fromFrequencyDomainCoefficients(log2SynthesisHop + 2, windowGain, windowCoefficients)},
+Output::Output(Fourier::Transforms &transforms, int log2SynthesisHop, int channelCount, int maxOutputChunkSize, float windowGain, std::initializer_list<float> windowCoefficients) :
+	synthesisWindow{Window::fromFrequencyDomainCoefficients(transforms, log2SynthesisHop + 2, windowGain, windowCoefficients)},
 	inverseTransformed(8 << log2SynthesisHop, channelCount),
 	bufferResampled(maxOutputChunkSize, channelCount)
 {
-	Fourier::transforms->prepareInverse(log2SynthesisHop + 3);
+	transforms.prepareInverse(log2SynthesisHop + 3);
 }
 
 void Output::applySynthesisWindow(int log2SynthesisHop, Grains &grains, const Eigen::Ref<const Eigen::ArrayXf> &window)

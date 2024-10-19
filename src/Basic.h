@@ -9,12 +9,14 @@
 #include "Output.h"
 #include "Timing.h"
 
+#include <memory>
+
 namespace Bungee {
 
 struct Basic :
-	Fourier::Bootstrap,
 	Timing
 {
+	std::unique_ptr<Fourier::Transforms> transforms;
 	Input input;
 	Grains grains;
 	Output output;

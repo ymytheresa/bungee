@@ -14,12 +14,12 @@ static constexpr float pi = std::numbers::pi_v<float>;
 static constexpr float gain = (3 * pi) / (3 * pi + 8);
 } // namespace
 
-Input::Input(int log2SynthesisHop, int channelCount) :
-	analysisWindowBasic(Window::fromFrequencyDomainCoefficients(log2SynthesisHop + 3, gain / (8 << log2SynthesisHop), {1.f, 0.5f})),
+Input::Input(int log2SynthesisHop, int channelCount, Fourier::Transforms &transforms) :
+	analysisWindowBasic(Window::fromFrequencyDomainCoefficients(transforms, log2SynthesisHop + 3, gain / (8 << log2SynthesisHop), {1.f, 0.5f})),
 	windowedInput{(8 << log2SynthesisHop), channelCount}
 {
 	windowedInput.setZero();
-	Fourier::transforms->prepareForward(log2SynthesisHop + 3);
+	transforms.prepareForward(log2SynthesisHop + 3);
 }
 
 int Input::applyAnalysisWindow(const Eigen::Ref<const Eigen::ArrayXXf> &input)

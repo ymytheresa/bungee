@@ -11,7 +11,6 @@
 #include <complex>
 #include <limits>
 #include <memory>
-#include <mutex>
 #include <vector>
 
 namespace Bungee {
@@ -68,13 +67,11 @@ inline void resize(int log2TransformLength, int channelCount, T &array, int extr
 struct Transforms
 {
 	virtual ~Transforms() {}
-	virtual void prepareForward(int log2Length) = 0;
-	virtual void prepareInverse(int log2Length) = 0;
+	virtual void prepareForward(int log2TransformLength) = 0;
+	virtual void prepareInverse(int log2TransformLength) = 0;
 	virtual void forward(int log2TransformLength, const Eigen::Ref<const Eigen::ArrayXXf> &t, Eigen::Ref<Eigen::ArrayXXcf> f) const = 0;
 	virtual void inverse(int log2TransformLength, Eigen::Ref<Eigen::ArrayXXf> t, const Eigen::Ref<const Eigen::ArrayXXcf> &f) const = 0;
 };
-
-extern Transforms *transforms;
 
 // General case when an FFT implementation has different states for forward and reverse transforms of same size.
 template <class F, class I>
@@ -129,27 +126,19 @@ struct Cache :
 {
 	typedef KernelPair<typename K::Forward, typename K::Inverse> Entry;
 	typedef std::array<Entry, log2MaxSize + 1> Table;
-	std::mutex preparationMutex;
 
 	Table table;
 
-	Cache()
+	void prepareForward(int log2TransformLength) override
 	{
-		transforms = this;
+		if (!table[log2TransformLength].forward())
+			table[log2TransformLength].forward(new typename K::Forward(log2TransformLength));
 	}
 
-	void prepareForward(int log2Length) override
+	void prepareInverse(int log2TransformLength) override
 	{
-		std::scoped_lock lock(preparationMutex);
-		if (!table[log2Length].forward())
-			table[log2Length].forward(new typename K::Forward(log2Length));
-	}
-
-	void prepareInverse(int log2Length) override
-	{
-		std::scoped_lock lock(preparationMutex);
-		if (!table[log2Length].inverse())
-			table[log2Length].inverse(new typename K::Inverse(log2Length));
+		if (!table[log2TransformLength].inverse())
+			table[log2TransformLength].inverse(new typename K::Inverse(log2TransformLength));
 	}
 
 	void forward(int log2TransformLength, const Eigen::Ref<const Eigen::ArrayXXf> &t, Eigen::Ref<Eigen::ArrayXXcf> f) const override
@@ -177,9 +166,6 @@ struct Cache :
 	}
 };
 
-struct Bootstrap
-{
-	Bootstrap();
-};
+std::unique_ptr<Transforms> transforms();
 
 } // namespace Bungee::Fourier

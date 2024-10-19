@@ -11,7 +11,7 @@
 
 namespace Bungee::Window {
 
-Eigen::ArrayXf fromFrequencyDomainCoefficients(int log2Size, float gain, std::initializer_list<float> coefficients)
+Eigen::ArrayXf fromFrequencyDomainCoefficients(Fourier::Transforms &transforms, int log2Size, float gain, std::initializer_list<float> coefficients)
 {
 	Eigen::ArrayXcf frequencyDomain(Fourier::binCount(log2Size));
 
@@ -22,8 +22,8 @@ Eigen::ArrayXf fromFrequencyDomainCoefficients(int log2Size, float gain, std::in
 	frequencyDomain.bottomRows(frequencyDomain.rows() - i).setZero();
 
 	Eigen::ArrayXf window(1 << log2Size);
-	Fourier::transforms->prepareInverse(log2Size);
-	Fourier::transforms->inverse(log2Size, window, frequencyDomain);
+	transforms.prepareInverse(log2Size);
+	transforms.inverse(log2Size, window, frequencyDomain);
 	return window;
 }
 

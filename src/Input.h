@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Assert.h"
+#include "Fourier.h"
 
 #include <Eigen/Dense>
 
@@ -14,7 +15,7 @@ struct Input
 	Eigen::ArrayXf analysisWindowBasic;
 	Eigen::ArrayXXf windowedInput;
 
-	Input(int log2SynthesisHop, int channelCount);
+	Input(int log2SynthesisHop, int channelCount, Fourier::Transforms &transforms);
 
 	int applyAnalysisWindow(const Eigen::Ref<const Eigen::ArrayXXf> &input);
 };

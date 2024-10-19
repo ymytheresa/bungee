@@ -5,6 +5,7 @@
 
 #include "Assert.h"
 #include "Dispatch.h"
+#include "Fourier.h"
 
 #include <Eigen/Dense>
 
@@ -12,7 +13,7 @@
 
 namespace Bungee::Window {
 
-Eigen::ArrayXf fromFrequencyDomainCoefficients(int log2Size, float gain, std::initializer_list<float> coefficients);
+Eigen::ArrayXf fromFrequencyDomainCoefficients(Fourier::Transforms &transforms, int log2Size, float gain, std::initializer_list<float> coefficients);
 
 struct Apply
 {

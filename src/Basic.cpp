@@ -36,9 +36,10 @@ bool Stretcher<Basic>::isFlushed() const
 
 Basic::Basic(SampleRates sampleRates, int channelCount, int log2SynthesisHopOverride) :
 	Timing(sampleRates, log2SynthesisHopOverride),
-	input(log2SynthesisHop, channelCount),
+	transforms(Fourier::transforms()),
+	input(log2SynthesisHop, channelCount, *transforms),
 	grains(4),
-	output(log2SynthesisHop, channelCount, maxOutputFrameCount(true), 0.25f, {1.f, 0.5f})
+	output(*transforms, log2SynthesisHop, channelCount, maxOutputFrameCount(true), 0.25f, {1.f, 0.5f})
 {
 	for (auto &grain : grains.vector)
 		grain = std::make_unique<Grain>(log2SynthesisHop, channelCount);
@@ -68,7 +69,7 @@ void Basic::analyseGrain(const float *data, std::ptrdiff_t stride)
 
 		auto log2TransformLength = input.applyAnalysisWindow(ref);
 
-		Fourier::transforms->forward(log2TransformLength, input.windowedInput, grain.transformed);
+		transforms->forward(log2TransformLength, input.windowedInput, grain.transformed);
 
 		const auto n = Fourier::binCount(grain.log2TransformLength) - 1;
 		grain.validBinCount = std::min<int>(std::ceil(n / grain.resampleOperations.output.ratio), n) + 1;
@@ -112,7 +113,7 @@ void Basic::synthesiseGrain(OutputChunk &outputChunk)
 		else
 			grain.transformed.topRows(grain.validBinCount).colwise() *= t;
 
-		Fourier::transforms->inverse(grain.log2TransformLength, output.inverseTransformed, grain.transformed);
+		transforms->inverse(grain.log2TransformLength, output.inverseTransformed, grain.transformed);
 	}
 
 	output.applySynthesisWindow(log2SynthesisHop, grains, output.synthesisWindow);
