@@ -2,15 +2,11 @@ cmake_minimum_required(VERSION 3.25)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_custom_command(
-  OUTPUT version.cpp _
-  COMMAND ${CMAKE_COMMAND} -DVERSION_NAMESPACE=Bungee -DGIT_CWD=${CMAKE_CURRENT_SOURCE_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/version.cmake)
-
 project(bungee)
 
 file(GLOB BUNGEE_LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/bungee/*.h")
 
-add_library(bungee_static STATIC
+add_library(bungee_object OBJECT 
   ${BUNGEE_LIBRARY_HEADERS}
   src/Synthesis.cpp
   src/Basic.cpp
@@ -24,32 +20,49 @@ add_library(bungee_static STATIC
   src/Stretch.cpp
   src/Timing.cpp
   src/Window.cpp
-  src/Assert.cpp
-  ${CMAKE_CURRENT_BINARY_DIR}/version.cpp)
+  src/Assert.cpp)
 
-target_include_directories(bungee_static PUBLIC .)
-target_include_directories(bungee_static PRIVATE submodules submodules/eigen)
+target_include_directories(bungee_object PUBLIC .)
+target_include_directories(bungee_object PRIVATE submodules submodules/eigen)
 
 set(BUNGEE_SELF_TEST 0 CACHE STRING "Enable self tests (0=off, 1=fast, 2=full)")
-target_compile_definitions(bungee_static PRIVATE BUNGEE_SELF_TEST=${BUNGEE_SELF_TEST} eigen_assert=BUNGEE_ASSERT1)
+target_compile_definitions(bungee_object PRIVATE BUNGEE_SELF_TEST=${BUNGEE_SELF_TEST} eigen_assert=BUNGEE_ASSERT1)
 
-target_compile_options(bungee_static PRIVATE $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-fwrapv>)
+target_compile_options(bungee_object PRIVATE $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-fwrapv>)
 
-set_target_properties(bungee_static PROPERTIES
+set_target_properties(bungee_object PROPERTIES
   PUBLIC_HEADER "${BUNGEE_LIBRARY_HEADERS}"
   POSITION_INDEPENDENT_CODE ON)
 
+add_custom_command(
+  OUTPUT version_static.cpp never_exists_static
+  COMMAND ${CMAKE_COMMAND} -DVERSION_NAMESPACE=Bungee -DGIT_CWD=${CMAKE_CURRENT_SOURCE_DIR} -DVERSION_CPP=version_static.cpp -P ${CMAKE_CURRENT_SOURCE_DIR}/version.cmake)
+  
+add_library(bungee_static STATIC
+  ${BUNGEE_LIBRARY_HEADERS}
+  ${CMAKE_CURRENT_BINARY_DIR}/version_static.cpp
+  $<TARGET_OBJECTS:bungee_object>)
+  
+add_custom_command(
+  OUTPUT version_shared.cpp never_exists_shared
+  COMMAND ${CMAKE_COMMAND} -DVERSION_NAMESPACE=Bungee -DGIT_CWD=${CMAKE_CURRENT_SOURCE_DIR} -DVERSION_CPP=version_shared.cpp -P ${CMAKE_CURRENT_SOURCE_DIR}/version.cmake)
+  
 add_library(bungee_shared SHARED
-  ${BUNGEE_LIBRARY_HEADERS})
+  ${BUNGEE_LIBRARY_HEADERS}
+  ${CMAKE_CURRENT_BINARY_DIR}/version_shared.cpp
+  $<TARGET_OBJECTS:bungee_object>)
 
-target_link_libraries(bungee_shared PUBLIC bungee_static)
-
-add_executable(bungee_executable cmd/main.cpp $<TARGET_OBJECTS:bungee_static>)
+add_executable(bungee_executable cmd/main.cpp)
+target_link_libraries(bungee_executable PRIVATE bungee_static)
 target_include_directories(bungee_executable PRIVATE submodules/cxxopts/include .)
 
-set_target_properties(bungee_static PROPERTIES OUTPUT_NAME bungee)
-set_target_properties(bungee_shared PROPERTIES OUTPUT_NAME bungee)
-set_target_properties(bungee_executable PROPERTIES OUTPUT_NAME bungee)
+set_target_properties(bungee_static PROPERTIES 
+  OUTPUT_NAME bungee
+  PUBLIC_HEADER "${BUNGEE_LIBRARY_HEADERS}")
+set_target_properties(bungee_shared PROPERTIES 
+  OUTPUT_NAME bungee)
+set_target_properties(bungee_executable PROPERTIES 
+  OUTPUT_NAME bungee)
 
 set(KISSFFT_PKGCONFIG OFF CACHE INTERNAL "" FORCE)
 set(KISSFFT_STATIC ON CACHE INTERNAL "" FORCE)
@@ -64,7 +77,6 @@ if(APPLE)
   set(BUNGEE_VERSION 0.0 CACHE STRING "Bungee framework version string")
   set_target_properties(bungee_shared PROPERTIES
     FRAMEWORK TRUE
-    PUBLIC_HEADER "${BUNGEE_LIBRARY_HEADERS}"
     MACOSX_FRAMEWORK_IDENTIFIER com.parabolaresearch.bungee
     XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer"
     VERSION ${BUNGEE_VERSION}
@@ -82,8 +94,8 @@ install(TARGETS bungee_static
   ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/${BUNGEE_ABI_NAME}/archive)
 
 install(TARGETS bungee_shared
-  LIBRARY DESTIMATION ${CMAKE_INSTALL_PREFIX}/${BUNGEE_ABI_NAME}/library
-  RUNTIME DESTIMATION ${CMAKE_INSTALL_PREFIX}/${BUNGEE_ABI_NAME}/runtime
+  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/${BUNGEE_ABI_NAME}/library
+  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/${BUNGEE_ABI_NAME}/runtime
   FRAMEWORK DESTINATION ${CMAKE_INSTALL_PREFIX}/${BUNGEE_ABI_NAME}/framework)
 
 install(TARGETS bungee_executable
