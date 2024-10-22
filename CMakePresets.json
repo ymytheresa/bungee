@@ -88,6 +88,7 @@
             "generator": "Xcode",
             "toolchainFile": "${sourceDir}/submodules/ios-cmake/ios.toolchain.cmake",
             "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Release",
                 "NAMED_LANGUAGE_SUPPORT": "ON",
                 "ENABLE_BITCODE": "OFF",
                 "ENABLE_ARC": "ON",
@@ -123,7 +124,7 @@
             "name": "apple-ios-arm64",
             "inherits": "apple-ios",
             "cacheVariables": {
-                "PLATFORM": "OS64COMBINED"
+                "PLATFORM": "OS64"
             }
         },
         {
