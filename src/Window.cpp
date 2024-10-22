@@ -15,13 +15,14 @@ Eigen::ArrayXf fromFrequencyDomainCoefficients(Fourier::Transforms &transforms, 
 {
 	Eigen::ArrayXcf frequencyDomain(Fourier::binCount(log2Size));
 
-	std::size_t i = 0;
+	std::size_t row = 0;
 	for (auto c : coefficients)
-		frequencyDomain.coeffRef(i++) = c * gain;
+		if (row < frequencyDomain.rows())
+			frequencyDomain.coeffRef(row++) = c * gain;
 
-	frequencyDomain.bottomRows(frequencyDomain.rows() - i).setZero();
+	frequencyDomain.bottomRows(frequencyDomain.rows() - row).setZero();
 
-	Eigen::ArrayXf window(1 << log2Size);
+	Eigen::ArrayXf window(Fourier::transformLength(log2Size));
 	transforms.prepareInverse(log2Size);
 	transforms.inverse(log2Size, window, frequencyDomain);
 	return window;
