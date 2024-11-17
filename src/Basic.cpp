@@ -1,38 +1,86 @@
 // Copyright (C) 2020-2024 Parabola Research Limited
 // SPDX-License-Identifier: MPL-2.0
 
+#define BUNGEE_BASIC_CPP
+
 #include "Basic.h"
 #include "Resample.h"
 #include "Synthesis.h"
 #include "log2.h"
 
+using namespace Bungee;
+
 namespace Bungee {
-
 extern const char *versionDescription;
-
-template <>
-const char *Stretcher<Basic>::version()
-{
-	return versionDescription;
 }
 
-template <>
-void Stretcher<Basic>::analyseGrain(const float *data, intptr_t channelStride)
+const char *Bungee_Stretcher_version()
 {
-	implementation->analyseGrain(data, channelStride);
+	return Bungee::versionDescription;
 }
 
-template <>
-void Stretcher<Basic>::synthesiseGrain(OutputChunk &outputChunk)
+void *Bungee_Stretcher_create(SampleRates sampleRates, int channelCount, int log2SynthesisHop)
 {
-	implementation->synthesiseGrain(outputChunk);
+	return new Basic(sampleRates, channelCount, log2SynthesisHop);
 }
 
-template <>
-bool Stretcher<Basic>::isFlushed() const
+void Bungee_Stretcher_destroy(void *implementation)
 {
-	return implementation->grains.flushed();
+	delete reinterpret_cast<Basic *>(implementation);
 }
+
+void Bungee_Stretcher_analyseGrain(void *implementation, const float *data, intptr_t channelStride)
+{
+	reinterpret_cast<Basic *>(implementation)->analyseGrain(data, channelStride);
+}
+
+void Bungee_Stretcher_synthesiseGrain(void *implementation, OutputChunk *outputChunk)
+{
+	reinterpret_cast<Basic *>(implementation)->synthesiseGrain(*outputChunk);
+}
+
+bool Bungee_Stretcher_isFlushed(const void *implementation)
+{
+	return reinterpret_cast<const Basic *>(implementation)->grains.flushed();
+}
+
+Bungee_InputChunk Bungee_Stretcher_specifyGrain(void *implementation, const Request *request)
+{
+	return reinterpret_cast<Basic *>(implementation)->specifyGrain(*request);
+}
+
+int Bungee_Stretcher_maxInputFrameCount(const void *implementation)
+{
+	return reinterpret_cast<const Basic *>(implementation)->maxInputFrameCount(true);
+}
+
+void Bungee_Stretcher_preroll(const void *implementation, Bungee_Request *request)
+{
+	reinterpret_cast<const Basic *>(implementation)->preroll(*request);
+}
+
+void Bungee_Stretcher_next(const void *implementation, Bungee_Request *request)
+{
+	reinterpret_cast<const Basic *>(implementation)->next(*request);
+}
+
+Bungee_Stretcher_FunctionTable Bungee_Stretcher_getFunctionTable()
+{
+	return Bungee_Stretcher_FunctionTable{
+		Bungee_Stretcher_version,
+		Bungee_Stretcher_create,
+		Bungee_Stretcher_destroy,
+		Bungee_Stretcher_maxInputFrameCount,
+		Bungee_Stretcher_preroll,
+		Bungee_Stretcher_next,
+		Bungee_Stretcher_specifyGrain,
+		Bungee_Stretcher_analyseGrain,
+		Bungee_Stretcher_synthesiseGrain,
+		Bungee_Stretcher_isFlushed,
+	};
+}
+
+namespace Bungee {
 
 Basic::Basic(SampleRates sampleRates, int channelCount, int log2SynthesisHopOverride) :
 	Timing(sampleRates, log2SynthesisHopOverride),
@@ -128,42 +176,6 @@ void Basic::synthesiseGrain(OutputChunk &outputChunk)
 
 	outputChunk.request[OutputChunk::begin] = &grains[2].request;
 	outputChunk.request[OutputChunk::end] = &grains[1].request;
-}
-
-template <>
-Stretcher<Basic>::Stretcher(SampleRates sampleRates, int channelCount, int log2SynthesisHop) :
-	implementation(new Basic(sampleRates, channelCount, log2SynthesisHop))
-{
-}
-
-template <>
-Stretcher<Basic>::~Stretcher()
-{
-	delete implementation;
-}
-
-template <>
-InputChunk Stretcher<Basic>::specifyGrain(const Request &request)
-{
-	return implementation->specifyGrain(request);
-}
-
-template <>
-int Stretcher<Basic>::maxInputFrameCount() const
-{
-	return implementation->maxInputFrameCount(true);
-}
-
-template <>
-void Stretcher<Basic>::preroll(Request &request) const
-{
-	implementation->preroll(request);
-}
-
-template <>
-void Stretcher<Basic>::next(Request &request) const
-{
-	implementation->next(request);
 }
 
 } // namespace Bungee

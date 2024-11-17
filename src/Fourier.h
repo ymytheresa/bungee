@@ -33,17 +33,21 @@ inline constexpr int binCount(int log2TransformLength)
 }
 
 template <typename Scalar>
-inline Scalar uninitialisedValue()
+constexpr Scalar uninitialisedValue()
 {
-	// This value changes at every commit.
-	// So any usage of uninitialised values in computations should be detected as a change in output.
-	return *(Scalar *)versionDescription;
+	return Scalar{};
 }
 
 template <>
-inline float uninitialisedValue<float>()
+constexpr float uninitialisedValue<float>()
 {
 	return std::numeric_limits<float>::signaling_NaN();
+}
+
+template <>
+constexpr std::complex<float> uninitialisedValue<std::complex<float>>()
+{
+	return {uninitialisedValue<float>(), uninitialisedValue<float>()};
 }
 
 template <bool frequencyDomain, class T>

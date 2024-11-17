@@ -209,9 +209,9 @@ struct Processor
 		if (!std::isnan(position[OutputChunk::begin]))
 		{
 			double nPrerollInput = outputChunk.request[OutputChunk::begin]->speed < 0. ? position[OutputChunk::begin] - inputFrameCount + 1 : -position[OutputChunk::begin];
-			nPrerollInput = std::max<int>(0., std::round(nPrerollInput));
+			nPrerollInput = std::max(0, (int)std::round(nPrerollInput));
 
-			const int nPrerollOutput = std::round(nPrerollInput * (outputChunk.frameCount / std::abs(position[OutputChunk::end] - position[OutputChunk::begin])));
+			const int nPrerollOutput = (int)std::round(nPrerollInput * (outputChunk.frameCount / std::abs(position[OutputChunk::end] - position[OutputChunk::begin])));
 
 			if (outputChunk.frameCount > nPrerollOutput)
 			{
@@ -320,7 +320,7 @@ struct Processor
 			return std::numeric_limits<Sample>::min();
 		if (x >= -(float)std::numeric_limits<Sample>::min())
 			return std::numeric_limits<Sample>::max();
-		return x;
+		return static_cast<Sample>(x);
 	}
 };
 

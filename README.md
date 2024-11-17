@@ -36,6 +36,10 @@ After a successful build, run the bungee executable
 ./bungee --help
 ```
 
+## Using pre-built Bungee
+
+By means of GitHub Actions and CMake Presets, every new tag on this repository is automatically built into a release. The release contains Bungee built as a shared library together with headers, sample code and a sample command-line executable that uses the shared library. The release supports common platforms including Linux, Windows, MacOS, Android and iOS.
+
 ## Using Bungee from your own code
 
 Bungee operates on discrete, overlapping "grains" of audio, typically processing around 100 grains per second. Parameters such as position and pitch are provided on a per-grain basis so that they can be changed continuously as audio rendering progresses. This means that only minimal parameters are required for  instantiation.
@@ -103,7 +107,7 @@ while (true)
 
 ### Things to note
 
-* Development has focussed on stereo and mono operation at sample rates of 44.1kHz and 48kHz. In principle, though, any practical number of audio channels and sample rate are supported.
+* Bungee is well tuned for stereo and mono operation at sample rates of 44.1kHz and 48kHz. In principle, though, any practical sample rate and number of audio channels are supported.
 
 * `Request::position` is a timestamp, it defines the grain centre point in terms of an input audio frame offset. It is the primary control for speed adjustments and is also the driver for seek and scrub operations. The caller is responsible for deciding  `Request::position` for each grain. 
 
