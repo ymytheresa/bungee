@@ -66,14 +66,20 @@ struct Bungee_Stretcher_FunctionTable
 	bool (*isFlushed)(const void *implementation);
 };
 
-#if defined(_WIN32) && defined(bungee_library_EXPORTS)
-#	define BUNGEE_C_API __declspec(dllexport)
+#if defined(bungee_library_EXPORTS)
+#	if defined(_WIN32)
+#		define BUNGEE_C_API __declspec(dllexport)
+#	else
+#		define BUNGEE_C_API __attribute__((visibility("default")))
+#	endif
 #else
 #	define BUNGEE_C_API
 #endif
 
 extern "C" BUNGEE_C_API Bungee_Stretcher_FunctionTable Bungee_Stretcher_getFunctionTable();
 extern "C" BUNGEE_C_API Bungee_Stretcher_FunctionTable BungeePro_Stretcher_getFunctionTable();
+
+#undef BUNGEE_C_API
 
 namespace Bungee {
 

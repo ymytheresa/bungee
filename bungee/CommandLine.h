@@ -1,8 +1,8 @@
 // Copyright (C) 2024 Parabola Research Limited
 // SPDX-License-Identifier: MPL-2.0
 
-#include "bungee/Bungee.h"
-#include "bungee/Push.h"
+#include <bungee/Bungee.h>
+#include <bungee/Push.h>
 
 #define CXXOPTS_NO_EXCEPTIONS
 #include "cxxopts.hpp"

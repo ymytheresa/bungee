@@ -1,8 +1,8 @@
 // Copyright (C) 2024 Parabola Research Limited
 // SPDX-License-Identifier: MPL-2.0
 
-#include "bungee/Bungee.h"
-#include "bungee/CommandLine.h"
+#include <bungee/Bungee.h>
+#include <bungee/CommandLine.h>
 
 int main(int argc, const char *argv[])
 {

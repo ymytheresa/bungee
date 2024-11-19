@@ -22,38 +22,39 @@ jobs:
       
       - name: 🛠️ Configure, build and install presets
         env:
-          GITHUB_REF: ${{github.ref}}
+          GITHUB_REF_NAME: ${{github.ref_name}}
           CMAKE_BUILD_PARALLEL_LEVEL: 2
           ANDROID_NDK: /usr/local/lib/android/sdk/ndk/26.3.11579264
         run: |
           sudo apt-get -y install mingw-w64
           for PRESET in \
-            linux-x86_64 \
             windows-x86_64 \
-            android-armeabi-v7a \
-            android-arm64-v8a \
-            android-x86 \
-            android-x86_64 \
             ; do
-            BUNGEE_VERSION=${GITHUB_REF//v} \
             cmake \
               --preset ${PRESET} \
               -S ${{github.workspace}}/bungee \
               -B ${{github.workspace}}/builds/${PRESET} \
-              -D CMAKE_INSTALL_PREFIX=${{github.workspace}}/ubuntu/ \
-              -D BUNGEE_ABI_NAME=${PRESET} \
-              -D BUNGEE_VERSION=${BUNGEE_VERSION} \
+              -D CMAKE_INSTALL_PREFIX=${{github.workspace}}/install/bungee-${PRESET} \
+              -D BUNGEE_VERSION=${GITHUB_REF_NAME//v}  \
               -G "Unix Makefiles"
             cmake \
-              --build ${{github.workspace}}/builds/${PRESET}/ \
-              --target install 
+              --build ${{github.workspace}}/builds/${PRESET} \
+              --target install
+            touch ${{github.workspace}}/install/bungee-${PRESET}/${{github.ref_name}}
           done
-      
+
+      - name: 🗜️ Prepare archives
+        working-directory: ${{github.workspace}}/install
+        run: |
+          cd bungee-windows-x86_64
+          zip -r ../bungee-windows.zip *
+
       - name: ✈️ Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ubuntu-latest-install 
-          path: ${{github.workspace}}/ubuntu/
+          path: ${{github.workspace}}/install
+
           
   build_macos:
     runs-on: macos-latest
@@ -71,43 +72,41 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ubuntu-latest-install 
-          path: ${{github.workspace}}/bungee-${{ github.ref_name }}
+          path: ${{github.workspace}}/install
 
       - name: 🛠️ Configure, build and install Apple presets
         env:
-          GITHUB_REF: ${{github.ref}}
+          GITHUB_REF_NAME: ${{github.ref_name}}
           CMAKE_BUILD_PARALLEL_LEVEL: 2
         run: |
           for PRESET in \
-            apple-mac-arm64  \
-            apple-mac-x86_64  \
-            apple-ios-arm64  \
-            apple-ios-x86_64  \
+            apple-mac \
             ; do
-            BUNGEE_VERSION=${GITHUB_REF//v} \
             cmake \
               --preset ${PRESET} \
-              -S ${{github.workspace}}/bungee \
-              -B ${{github.workspace}}/builds/${PRESET} \
-              -D CMAKE_INSTALL_PREFIX=${{github.workspace}}/bungee-${{ github.ref_name }} \
-              -D BUNGEE_ABI_NAME=${PRESET} \
-              -D BUNGEE_VERSION=${BUNGEE_VERSION}
+              -S bungee \
+              -B builds/${PRESET} \
+              -D CMAKE_INSTALL_PREFIX=bungee-${PRESET} \
+              -D BUNGEE_VERSION=${GITHUB_REF_NAME//v}
             cmake \
-              --build ${{github.workspace}}/builds/${PRESET} \
+              --build builds/${PRESET} \
               --config Release
             cmake \
-              --install ${{github.workspace}}/builds/${PRESET}
+              --install builds/${PRESET}
           done
 
-      - name: 🗜️ Prepare archive
+      - name: 🗜️ Prepare archives
         run: |
-          tar -cvzf ${{github.workspace}}/bungee-${{ github.ref_name }}.tgz -C ${{github.workspace}} bungee-${{ github.ref_name }}
+          mv bungee-apple-mac bungee-mac
+          tar -cvzf ${{github.workspace}}/install/bungee-mac.tgz bungee-mac/*
 
       - name: ⭐ Create release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          gh release create "${{ github.ref_name }}" \
-              --repo="${{ github.repository }}" \
-              --title="Bungee ${{ github.ref_name }}" \
-              ${{github.workspace}}/bungee-${{ github.ref_name }}.tgz
+          gh release create "${{github.ref_name}}" \
+              --repo="${{github.repository}}" \
+              --title="Bungee ${{github.ref_name}}" \
+              ${{github.workspace}}/install/bungee-windows.zip \
+              ${{github.workspace}}/install/bungee-mac.tgz
+  

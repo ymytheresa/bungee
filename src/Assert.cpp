@@ -8,6 +8,7 @@
 
 namespace Bungee::Assert {
 
+#if BUNGEE_SELF_TEST
 #ifndef BUNGEE_ASSERT_FAIL_EXTERNAL
 void fail(int level, const char *message, const char *file, int line)
 {
@@ -17,7 +18,6 @@ void fail(int level, const char *message, const char *file, int line)
 }
 #endif
 
-#if BUNGEE_SELF_TEST
 FloatingPointExceptions::FloatingPointExceptions(int allowed) :
 	allowed(allowed)
 {

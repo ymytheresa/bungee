@@ -6,7 +6,7 @@
 #include <cassert>
 #include <vector>
 
-#include "Bungee.h"
+#include <bungee/Bungee.h>
 
 namespace Bungee::Push {
 
