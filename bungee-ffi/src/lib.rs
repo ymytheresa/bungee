@@ -17,6 +17,29 @@ pub struct Request {
     pub reset: bool,    // Reset stretcher state
 }
 
+impl Request {
+    /// Create a new request using semitones for pitch shifting
+    /// 
+    /// # Arguments
+    /// * `position` - Frame-offset within the input audio
+    /// * `speed` - Output audio speed (1.0 = unchanged)
+    /// * `semitones` - Number of semitones to shift (positive = up, negative = down)
+    /// * `reset` - Whether to reset stretcher state
+    pub fn with_semitones(position: f64, speed: f64, semitones: f64, reset: bool) -> Self {
+        Self {
+            position,
+            speed,
+            pitch: 2.0f64.powf(semitones / 12.0),
+            reset,
+        }
+    }
+
+    /// Get the current pitch shift in semitones
+    pub fn semitones(&self) -> f64 {
+        12.0 * self.pitch.log2()
+    }
+}
+
 /// Safe wrapper for input chunk specification
 #[derive(Debug, Clone)]
 pub struct InputChunk {
@@ -172,6 +195,24 @@ impl Stretcher {
         *request = ffi_request.into();
         debug!("Advanced to next step, updated request: {:?}", request);
         Ok(())
+    }
+
+    /// Calculate the expected output duration given an input duration and request parameters
+    /// 
+    /// # Arguments
+    /// * `input_duration` - Duration of input audio in seconds
+    /// * `request` - Request parameters containing speed and pitch
+    pub fn calculate_output_duration(&self, input_duration: f64, request: &Request) -> f64 {
+        input_duration * request.speed / request.pitch
+    }
+
+    /// Calculate the expected output frame count given input frames and request parameters
+    /// 
+    /// # Arguments
+    /// * `input_frames` - Number of input audio frames
+    /// * `request` - Request parameters containing speed and pitch
+    pub fn calculate_output_frames(&self, input_frames: usize, request: &Request) -> usize {
+        (input_frames as f64 * request.speed / request.pitch) as usize
     }
 }
 

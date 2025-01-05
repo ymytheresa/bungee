@@ -36,6 +36,76 @@ After a successful build, run the bungee executable
 ./bungee --help
 ```
 
+## Using the Sample Code
+
+### Basic Example
+The repository includes several sample programs demonstrating Bungee's functionality:
+
+1. Basic time stretching:
+```cpp
+#include "Bungee.h"
+
+// Initialize stretcher for 44.1kHz stereo audio
+Bungee::Stretcher<Bungee::Basic> stretcher({44100, 44100}, 2);
+
+// Configure processing parameters
+Bungee::Request request{};
+request.position = 0.0;  // Start from beginning
+request.speed = 0.75;    // Play at 75% speed
+request.pitch = 1.0;     // Keep original pitch
+
+// Initialize stretcher state
+stretcher.preroll(request);
+
+// Process audio in grains
+while (!stretcher.is_flushed()) {
+    // Get required input segment
+    auto inputChunk = stretcher.specifyGrain(request);
+    
+    // Provide input audio data
+    stretcher.analyseGrain(inputData, channelStride);
+    
+    // Get processed output
+    Bungee::OutputChunk outputChunk;
+    stretcher.synthesiseGrain(outputChunk);
+    
+    // Use output audio data
+    // outputChunk.data contains the processed frames
+    
+    // Advance to next grain
+    stretcher.next(request);
+}
+```
+
+### Pitch Shifting Example
+To change pitch without affecting speed:
+```cpp
+// Shift up by one octave
+request.pitch = 2.0;     // 2.0 = one octave up
+request.speed = 1.0;     // maintain original speed
+```
+
+### Time Stretching Example
+To change speed without affecting pitch:
+```cpp
+// Slow down to half speed
+request.speed = 0.5;     // 0.5 = half speed
+request.pitch = 1.0;     // maintain original pitch
+```
+
+### Combined Effects
+You can combine pitch and speed changes:
+```cpp
+// Double speed and shift up one octave
+request.speed = 2.0;     // 2.0 = double speed
+request.pitch = 2.0;     // 2.0 = one octave up
+```
+
+For more detailed examples, see:
+- `cmd/main.cpp` - Command line interface implementation
+- `examples/basic.cpp` - Basic usage example
+- `examples/audio_test.cpp` - Audio processing test
+
 ## Using pre-built Bungee
 
 By means of GitHub Actions and CMake Presets, every new tag on this repository is automatically built into a release. The release contains Bungee built as a shared library together with headers, sample code and a sample command-line executable that uses the shared library. The release supports common platforms including Linux, Windows, MacOS, Android and iOS.
