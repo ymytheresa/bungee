@@ -11,6 +11,10 @@ struct Args {
     /// Process full duration if true, otherwise only process 30 seconds
     #[arg(long, default_value_t = false)]
     full_duration: bool,
+
+    /// Pitch shift in semitones (e.g., 12 for octave up, -12 for octave down)
+    #[arg(long, default_value_t = 12.0)]
+    semitones: f64,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -48,15 +52,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         spec.channels as i32
     )?;
 
-    // Initialize request with pitch shift (one octave up)
-    let mut request = Request {
-        position: 0.0,
-        speed: 1.0,     // Keep original speed
-        pitch: 2.0,     // Shift up one octave
-        reset: true,
-    };
+    // Initialize request with pitch shift using semitones
+    let mut request = Request::with_semitones(
+        0.0,            // start position
+        1.0,            // normal speed
+        args.semitones, // pitch shift in semitones
+        true,           // reset state
+    );
 
     println!("Prerolling stretcher...");
+    println!("Pitch settings:");
+    println!("  - Semitones: {}", args.semitones);
+    println!("  - Pitch multiplier: {}", request.pitch);
     stretcher.preroll(&mut request)?;
 
     // Create output WAV file with same format as input
@@ -68,22 +75,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut total_output_frames = 0;
     let total_frames = samples.len() / spec.channels as usize;
     
-    // Calculate max frames based on duration choice
+    // Calculate target frames and duration
     let target_duration = if args.full_duration {
-        input_duration
+        input_duration as f64
     } else {
         30.0
     };
     
-    // Adjust input frames to compensate for pitch change
-    let target_frames = ((target_duration * request.pitch as f32) * spec.sample_rate as f32) as usize;
+    let target_frames = (target_duration * spec.sample_rate as f64) as usize;
+    let expected_output_duration = stretcher.calculate_output_duration(target_duration, &request);
+    let expected_output_frames = stretcher.calculate_output_frames(target_frames, &request);
     
     println!("\nProcessing configuration:");
     println!("  - Target duration: {} seconds", target_duration);
-    println!("  - Target frames (pitch adjusted): {}", target_frames);
+    println!("  - Target frames: {}", target_frames);
+    println!("  - Expected output duration: {} seconds", expected_output_duration);
+    println!("  - Expected output frames: {}", expected_output_frames);
     println!("  - Full duration mode: {}", args.full_duration);
     println!("  - Speed: {}", request.speed);
-    println!("  - Pitch: {}", request.pitch);
+    println!("  - Pitch: {} ({})", request.pitch, request.semitones());
     
     let mut chunk_count = 0;
     println!("\nStarting audio processing...");
@@ -141,11 +151,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("  - Output frames generated: {}", total_output_frames);
     println!("  - Output duration: {} seconds", output_duration);
     println!("  - Target duration: {} seconds", target_duration);
-    println!("  - Expected duration (with pitch): {} seconds", target_duration / request.pitch as f32);
+    println!("  - Expected output duration: {} seconds", expected_output_duration);
     
-    // Validate output duration (accounting for pitch)
-    let expected_duration = target_duration / request.pitch as f32;
-    let duration_error = (output_duration - expected_duration).abs();
+    // Validate output duration
+    let duration_error = (output_duration as f64 - expected_output_duration).abs();
     let is_duration_correct = duration_error < 1.0; // Allow 1 second tolerance
     
     println!("\nWriting output file...");
@@ -177,10 +186,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 - Full duration mode: {}
 - Target duration: {} seconds
 - Speed: {}
-- Pitch: {}
+- Pitch shift: {} semitones (multiplier: {})
 
 ## Problem
-The output duration ({} seconds) does not match the target duration ({} seconds).
+The output duration ({} seconds) does not match the expected duration ({} seconds).
 Duration error: {} seconds
 
 ## Processing Details
@@ -190,25 +199,27 @@ Duration error: {} seconds
 - Total input frames: {}
 - Processed frames: {}
 - Output frames: {}
+- Expected output frames: {}
 - Chunks processed: {}
 
 ## Analysis
-The output duration is significantly shorter than expected. This might indicate:
+The output duration is significantly different than expected. This might indicate:
 1. Frames are being dropped during processing
-2. The stretcher is not generating enough output frames
+2. The stretcher is not generating the expected number of output frames
 3. There might be an issue with the frame counting logic
 
 ## Steps to Reproduce
-1. Run wav_test with{} --full-duration flag
+1. Run wav_test with{} --full-duration flag --semitones {}
 2. Process {} second audio file
 3. Check output duration
 "#,
             args.full_duration,
             target_duration,
             request.speed,
+            request.semitones(),
             request.pitch,
             output_duration,
-            target_duration,
+            expected_output_duration,
             duration_error,
             input_duration,
             spec.sample_rate,
@@ -216,8 +227,10 @@ The output duration is significantly shorter than expected. This might indicate:
             total_frames,
             processed_frames,
             total_output_frames,
+            expected_output_frames,
             chunk_count,
             if args.full_duration { "" } else { "out" },
+            args.semitones,
             if args.full_duration { input_duration } else { 30.0 }
         );
         

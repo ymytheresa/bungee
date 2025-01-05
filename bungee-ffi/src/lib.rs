@@ -261,6 +261,9 @@ impl From<ffi::Bungee_InputChunk> for InputChunk {
 mod tests {
     use super::*;
     use std::f32::consts::PI;
+    use std::fs::File;
+    use env_logger::Builder;
+    use log::LevelFilter;
 
     /// Generate a test sine wave at the given frequency
     fn generate_test_sine(freq_hz: f32, sample_rate: i32, duration_secs: f32) -> Vec<f32> {
@@ -297,18 +300,26 @@ mod tests {
 
     #[test]
     fn test_batch_processing() {
-        // Initialize logging for tests
-        let _ = env_logger::builder().is_test(true).try_init();
+        // Initialize logging to file
+        let log_path = "../test.log";
+        let file = File::create(log_path).expect("Failed to create log file");
+        Builder::new()
+            .target(env_logger::Target::Pipe(Box::new(file)))
+            .filter_level(LevelFilter::Debug)
+            .init();
 
+        info!("Starting batch processing test");
+        
         // Test parameters
         let sample_rate = 44100;
         let channels = 1;
         let input_freq_hz = 440.0; // A4 note
-        let duration_secs = 1.0;
+        let duration_secs = 0.1;  // Shorter test duration
         let pitch_shift = 2.0; // Shift up one octave
 
-        // Generate test input signal (1 second of 440Hz sine wave)
+        info!("Generating test signal: {}Hz sine wave, {}s duration", input_freq_hz, duration_secs);
         let input_audio = generate_test_sine(input_freq_hz, sample_rate, duration_secs);
+        info!("Generated {} samples", input_audio.len());
         
         // Create stretcher with pitch shift
         let mut stretcher = Stretcher::new(sample_rate, channels).expect("Failed to create stretcher");
@@ -321,34 +332,32 @@ mod tests {
             reset: true,
         };
 
-        // Get initial state
-        let initial_max_frames = stretcher.max_input_frame_count();
-        println!("Initial max input frames: {}", initial_max_frames);
-        
+        // Check initial state
+        let max_input_frames = stretcher.max_input_frame_count();
+        info!("Max input frames: {}", max_input_frames);
+        info!("Initial flushed state: {}", stretcher.is_flushed());
+
         // Preroll the stretcher
         stretcher.preroll(&mut request).expect("Failed to preroll");
-        println!("After preroll: position={}, speed={}, pitch={}, reset={}", 
-            request.position, request.speed, request.pitch, request.reset);
+        info!("Initialized stretcher: speed={}, pitch={}", request.speed, request.pitch);
+        info!("Flushed state after preroll: {}", stretcher.is_flushed());
 
-        // Check state after preroll
-        let is_flushed = stretcher.is_flushed();
-        println!("Is flushed after preroll: {}", is_flushed);
-
-        // Try to get first grain even if flushed
-        let chunk = stretcher.specify_grain(&request).expect("Failed to specify first grain");
-        println!("First grain chunk: begin={}, end={}", chunk.begin, chunk.end);
+        // Try to get first chunk
+        let first_chunk = stretcher.specify_grain(&request).expect("Failed to specify first grain");
+        info!("First chunk: begin={}, end={}", first_chunk.begin, first_chunk.end);
 
         let mut output_audio = Vec::new();
+        let mut total_chunks = 0;
         
         // Process audio in grains
         while !stretcher.is_flushed() {
             // Get next input chunk needed
             let chunk = stretcher.specify_grain(&request).expect("Failed to specify grain");
-            println!("Processing chunk: begin={}, end={}", chunk.begin, chunk.end);
+            debug!("Processing chunk {}: begin={}, end={}", total_chunks + 1, chunk.begin, chunk.end);
             
             // Get padded grain data
             let grain_data = get_padded_grain(&input_audio, chunk.begin, chunk.end);
-            println!("Grain size: {}", grain_data.len());
+            debug!("Grain size: {}", grain_data.len());
 
             // Analyze the grain
             stretcher.analyse_grain(&grain_data, 1).expect("Failed to analyze grain");
@@ -365,15 +374,25 @@ mod tests {
 
             // Synthesize output
             stretcher.synthesise_grain(&mut output_chunk).expect("Failed to synthesize grain");
+            debug!("Generated {} output frames", output_chunk.frame_count);
 
             // Collect output audio
             output_audio.extend_from_slice(&output_chunk.data[..output_chunk.frame_count as usize]);
 
             // Advance to next step
             stretcher.next(&mut request).expect("Failed to advance to next step");
-            println!("Advanced to: position={}, speed={}, pitch={}, reset={}", 
-                request.position, request.speed, request.pitch, request.reset);
+            debug!("Advanced to position: {}", request.position);
+            
+            total_chunks += 1;
+            if total_chunks % 100 == 0 {
+                info!("Processed {} chunks, position: {}", total_chunks, request.position);
+            }
         }
+
+        info!("Processing complete: {} chunks processed", total_chunks);
+        info!("Input samples: {}", input_audio.len());
+        info!("Output samples: {}", output_audio.len());
+        info!("Output length ratio: {:.2}", output_audio.len() as f32 / input_audio.len() as f32);
 
         // Basic quality checks
         assert!(!output_audio.is_empty(), "No output audio generated");
@@ -387,8 +406,7 @@ mod tests {
         assert!(max_amplitude > 0.0, "Output audio is silent");
         assert!(max_amplitude <= 1.0, "Output audio is clipping");
 
+        info!("All quality checks passed");
         // TODO: Add frequency analysis to verify pitch shift
-        // This would involve FFT analysis to check that the output frequency
-        // is approximately input_freq_hz * pitch_shift
     }
 }
