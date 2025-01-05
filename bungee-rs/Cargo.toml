@@ -1,0 +1,19 @@
+[package]
+name = "bungee-rs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "bungee_rs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "bungee-rs"
+path = "src/main.rs"
+
+[dependencies]
+cxx = "1.0"
+
+[build-dependencies]
+cxx-build = "1.0"
+cmake = "0.1"

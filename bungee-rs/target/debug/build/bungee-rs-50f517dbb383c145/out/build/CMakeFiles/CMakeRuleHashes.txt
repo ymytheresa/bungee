@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+1c3dd2372d52a3c73435855f5983b6f3 version.cpp

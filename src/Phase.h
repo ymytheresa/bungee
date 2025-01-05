@@ -11,16 +11,11 @@
 #include <complex>
 #include <cstdint>
 #include <limits>
-#include <numbers>
 
-// Functions that use integer types to represent an angle in the interval [-pi, pi).
-
-// This library is designed around the fact that, in practical CPU architectures,
-// signed arithmetic overflows by wrapping. But signed arithmetic overflow is
-// undefined in C++ so if an optimizing compiler can detect that it will happen,
-// optimizations can produce an unexpected results. In practice, this is unlikely
-// to be a problem and popular compilers have a flag `-fwrapv` that can be set
-// to eliminate any doubts about undefined behaviour.
+// Mathematical constants
+namespace constants {
+    constexpr double pi = 3.14159265358979323846;
+}
 
 namespace Bungee::Phase {
 
@@ -57,7 +52,7 @@ template <typename T = Type>
 static inline constexpr float toRadians(T phase)
 {
 	constexpr auto shift = 8 * sizeof(T);
-	constexpr auto k = float((2 * std::numbers::pi) / (1ull << shift));
+	constexpr auto k = float((2 * constants::pi) / (1ull << shift));
 	return phase * k;
 }
 
@@ -65,7 +60,7 @@ template <typename T = Type>
 static inline constexpr T fromRadians(float radians)
 {
 	constexpr auto shift = 8 * sizeof(T);
-	constexpr float k = float((1ull << shift) / (2 * std::numbers::pi));
+	constexpr float k = float((1ull << shift) / (2 * constants::pi));
 	const T phase = T(k * radians);
 	return phase;
 }

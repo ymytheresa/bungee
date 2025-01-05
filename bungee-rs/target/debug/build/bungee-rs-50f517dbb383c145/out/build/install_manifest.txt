@@ -1,0 +1,11 @@
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/bungee
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Resources
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Versions/0.0.0/bungee
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Versions/0.0.0/Resources/Info.plist
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Versions/0.0.0/Headers/bungee/CommandLine.h
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Versions/0.0.0/Headers/bungee/Push.h
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Versions/0.0.0/Headers/bungee/Bungee.h
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Versions/Current
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/bungee.framework/Headers
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/sample/main.cpp
+/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/sample/cxxopts.hpp

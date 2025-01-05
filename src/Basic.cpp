@@ -154,7 +154,7 @@ void Basic::synthesiseGrain(OutputChunk &outputChunk)
 
 		BUNGEE_ASSERT2(!grain.passthrough || grain.rotation.topRows(grain.validBinCount).isZero());
 
-		auto theta = grain.rotation.topRows(grain.validBinCount).cast<float>() * (std::numbers::pi_v<float> / 0x8000);
+		auto theta = grain.rotation.topRows(grain.validBinCount).cast<float>() * (float(constants::pi) / 0x8000);
 		auto t = theta.cos() + theta.sin() * std::complex<float>{0, 1};
 		if (grain.reverse())
 			grain.transformed.topRows(grain.validBinCount) = grain.transformed.topRows(grain.validBinCount).conjugate().colwise() * t;
