@@ -1,1 +1,0 @@
-namespace Bungee { const char *versionDescription = "v2.0.67-1-g68a20923-dirty"; }

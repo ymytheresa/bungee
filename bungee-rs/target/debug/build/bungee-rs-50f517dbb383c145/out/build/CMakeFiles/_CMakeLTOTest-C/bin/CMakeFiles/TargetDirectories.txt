@@ -1,4 +1,0 @@
-/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/foo.dir
-/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/boo.dir
-/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/edit_cache.dir
-/Users/bubu/Doc/Github/bungee/bungee-rs/target/debug/build/bungee-rs-50f517dbb383c145/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/rebuild_cache.dir

@@ -1,1 +1,0 @@
-../../../debug/build/bungee-rs-50f517dbb383c145/out/cxxbridge/sources/bungee-rs/src/bungee.rs.cc

@@ -6,6 +6,7 @@ use std::ffi::c_void;
 
 /// Sample rates for input and output
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Bungee_SampleRates {
     pub input: i32,
     pub output: i32,
@@ -13,6 +14,7 @@ pub struct Bungee_SampleRates {
 
 /// Request parameters for time stretching
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Bungee_Request {
     pub position: f64,  // Frame-offset within the input audio
     pub speed: f64,     // Output audio speed (1.0 = unchanged)
@@ -22,6 +24,7 @@ pub struct Bungee_Request {
 
 /// Input chunk specification
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Bungee_InputChunk {
     pub begin: i32,  // Start frame offset
     pub end: i32,    // End frame offset
