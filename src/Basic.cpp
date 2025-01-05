@@ -11,7 +11,7 @@
 using namespace Bungee;
 
 namespace Bungee {
-extern const char *versionDescription;
+const char *versionDescription = "Bungee 0.1.0";
 }
 
 const char *Bungee_Stretcher_version()

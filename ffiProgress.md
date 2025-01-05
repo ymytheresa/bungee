@@ -8,6 +8,7 @@
     - `error.rs` - Error handling ✅
   - `examples/`
     - `basic.rs` - Basic usage example ✅
+    - `basic_test.rs` - Initial functionality test ✅
   - `build.rs` - Build configuration using cc crate ✅
   - `Cargo.toml` - Project metadata ✅
 
@@ -31,6 +32,11 @@
   - [x] Upgrade to C++20 for std::numbers
   - [x] Fix KissFFT file paths
   - [x] Test complete build ✅
+- [x] Verify basic operations:
+  - [x] Stretcher creation/destruction
+  - [x] Preroll functionality
+  - [x] Max frame count query
+  - [x] Flush state check
 - [ ] Implement remaining audio processing methods:
   - [ ] specify_grain
   - [ ] analyse_grain
@@ -39,6 +45,8 @@
 
 ### Phase 3: Testing ⏳ Started
 - [x] Basic example program
+- [x] Initial functionality test
+- [ ] Audio processing test
 - [ ] Unit tests
 - [ ] Integration tests
 - [ ] Safety tests
@@ -60,9 +68,14 @@
   - KissFFT integration working
   - Eigen headers configured
   - All dependencies building successfully
+- Basic operations verified:
+  - Stretcher lifecycle works
+  - Preroll functions correctly
+  - Frame count queries work
+  - Flush state checks work
 - Known minor issues:
-  - Some unnecessary unsafe blocks in lib.rs
-  - Unused warn import
+  - Some unnecessary unsafe blocks in lib.rs (fixed)
+  - Unused warn import (fixed)
   - C/C++ compilation warnings (non-critical)
 
 ## Design Decisions
