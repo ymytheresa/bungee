@@ -10,6 +10,7 @@ log = "0.4"  # Logging facade
 env_logger = "0.10"  # Simple logger implementation
 hound = "3.5"  # WAV file handling
 clap = { version = "4.4.11", features = ["derive"] }
+memoffset = "0.9"  # Field offset calculations for FFI
 
 [build-dependencies]
 cc = "1.0"  # For compiling C/C++ code

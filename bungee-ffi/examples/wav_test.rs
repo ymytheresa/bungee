@@ -20,9 +20,6 @@ struct Args {
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Parse command line arguments
     let args = Args::parse();
-    
-    // Initialize logging
-    env_logger::init();
 
     // Input WAV file path (using absolute paths)
     let input_path = Path::new("/Users/bubu/Doc/Github/bungee/audio/Instrumental - Heart - 190.5bpm - Emaj.wav");
@@ -60,10 +57,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         true,           // reset state
     );
 
-    println!("Prerolling stretcher...");
-    println!("Pitch settings:");
-    println!("  - Semitones: {}", args.semitones);
-    println!("  - Pitch multiplier: {}", request.pitch);
     stretcher.preroll(&mut request)?;
 
     // Create output WAV file with same format as input
@@ -83,8 +76,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
     
     let target_frames = (target_duration * spec.sample_rate as f64) as usize;
-    let expected_output_duration = stretcher.calculate_output_duration(target_duration, &request);
-    let expected_output_frames = stretcher.calculate_output_frames(target_frames, &request);
+    
+    // For pitch shifting only, output duration equals input duration
+    // This is because pitch shifting doesn't change duration
+    let expected_output_duration = target_duration;
+    let expected_output_frames = target_frames;
     
     println!("\nProcessing configuration:");
     println!("  - Target duration: {} seconds", target_duration);
@@ -96,15 +92,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("  - Pitch: {} ({})", request.pitch, request.semitones());
     
     let mut chunk_count = 0;
+    let mut last_progress = 0;
     println!("\nStarting audio processing...");
     
-    // Process until we've handled all input frames or reached duration limit
     while processed_frames < total_frames && processed_frames < target_frames {
         chunk_count += 1;
         let chunk = stretcher.specify_grain(&request)?;
-        println!("Chunk {}: Processing frames {} to {} (size: {})", 
-            chunk_count, chunk.begin, chunk.end, chunk.end - chunk.begin);
-        
+
         let grain_data = get_padded_grain(&samples, chunk.begin, chunk.end);
         stretcher.analyse_grain(&grain_data, spec.channels as isize)?;
 
@@ -123,10 +117,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if output_frames > 0 {
             output_audio.extend_from_slice(&output_chunk.data[..output_frames]);
             total_output_frames += output_chunk.frame_count as usize;
+            
+            // Log if we get zero frames
+            if output_chunk.frame_count == 0 {
+                println!("Warning: Got zero output frames for chunk {}", chunk_count);
+            }
         }
 
         stretcher.next(&mut request)?;
-        
+
         let chunk_frames = if chunk.end > 0 {
             chunk.end as usize - chunk.begin.max(0) as usize
         } else {
@@ -134,13 +133,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         };
         processed_frames += chunk_frames;
 
-        // Show progress every 10%
-        if processed_frames % (target_frames / 10) == 0 {
-            println!("Progress: {}% ({}/{} frames)", 
-                (processed_frames * 100) / target_frames,
+        // Show progress every 5%
+        let progress = (processed_frames * 100) / target_frames;
+        if progress >= last_progress + 5 {
+            println!("Progress: {}% ({}/{} frames, output: {} frames)", 
+                progress,
                 processed_frames,
-                target_frames
+                target_frames,
+                total_output_frames
             );
+            last_progress = progress;
         }
     }
 
@@ -152,6 +154,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("  - Output duration: {} seconds", output_duration);
     println!("  - Target duration: {} seconds", target_duration);
     println!("  - Expected output duration: {} seconds", expected_output_duration);
+    println!("  - Frame ratio: {:.2}", total_output_frames as f32 / processed_frames as f32);
     
     // Validate output duration
     let duration_error = (output_duration as f64 - expected_output_duration).abs();

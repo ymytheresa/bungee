@@ -203,7 +203,13 @@ impl Stretcher {
     /// * `input_duration` - Duration of input audio in seconds
     /// * `request` - Request parameters containing speed and pitch
     pub fn calculate_output_duration(&self, input_duration: f64, request: &Request) -> f64 {
-        input_duration * request.speed / request.pitch
+        // For pitch shifting only (speed = 1.0), output duration equals input duration
+        if (request.speed - 1.0).abs() < f64::EPSILON {
+            input_duration
+        } else {
+            // For time stretching, adjust duration by speed
+            input_duration * request.speed
+        }
     }
 
     /// Calculate the expected output frame count given input frames and request parameters
@@ -212,7 +218,13 @@ impl Stretcher {
     /// * `input_frames` - Number of input audio frames
     /// * `request` - Request parameters containing speed and pitch
     pub fn calculate_output_frames(&self, input_frames: usize, request: &Request) -> usize {
-        (input_frames as f64 * request.speed / request.pitch) as usize
+        // For pitch shifting only (speed = 1.0), output frames equals input frames
+        if (request.speed - 1.0).abs() < f64::EPSILON {
+            input_frames
+        } else {
+            // For time stretching, adjust frames by speed
+            (input_frames as f64 * request.speed) as usize
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 cargo:rerun-if-changed=../bungee/Bungee.h
+cargo:rerun-if-changed=wrapper.cpp
 cargo:rerun-if-changed=../src/Basic.cpp
 cargo:rerun-if-changed=../src/Basic.cpp
 cargo:rerun-if-changed=../src/Assert.cpp

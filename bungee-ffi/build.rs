@@ -1,5 +1,6 @@
 fn main() {
     println!("cargo:rerun-if-changed=../bungee/Bungee.h");
+    println!("cargo:rerun-if-changed=wrapper.cpp");
     println!("cargo:rerun-if-changed=../src/Basic.cpp");
 
     // Configure C++ build
@@ -18,6 +19,9 @@ fn main() {
         .define("NDEBUG", None)  // Disable assert() macro
         .define("EIGEN_MPL2_ONLY", None)  // Use only MPL2 licensed code
         .define("EIGEN_MAX_ALIGN_BYTES", "32");  // Fix alignment issues
+
+    // Add wrapper file first
+    build.file("wrapper.cpp");
 
     // Add all source files
     let source_files = [

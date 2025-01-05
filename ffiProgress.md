@@ -27,9 +27,15 @@
   - Detailed debug information
   - Progress tracking
   - Duration validation
+- Added FFI validation:
+  - Struct size validation
+  - Memory layout checks
+  - Debug logging for FFI parameters
 
 ## Current Status ⏳
-- Batch processing tests implemented but hanging
+- FFI struct validation added
+- Debug logging for FFI calls implemented
+- Fixed pitch shifting duration calculation
 - Initial audio output verified
 - Basic error handling in place
 - Logging system operational
@@ -38,19 +44,24 @@
 
 ## Next Steps 🔄
 
-### Phase 1: Critical Issues
-1. Debug Processing Loop:
-   - [ ] Investigate infinite loop in batch processing
-   - [ ] Verify flushed state transitions
-   - [ ] Check grain size calculations
-   - [ ] Validate position advancement
+### Phase 1: FFI Validation
+1. Verify Memory Layout:
+   - [ ] Run size validation tests
+   - [ ] Check struct field alignments
+   - [ ] Verify parameter passing
+   - [ ] Test memory safety
+
+2. Debug FFI Communication:
+   - [ ] Monitor parameter values
+   - [ ] Track function calls
+   - [ ] Validate return values
+   - [ ] Check error conditions
 
 ### Phase 2: Testing Refinements
 1. Quality Verification:
    - [ ] Add frequency analysis for pitch shifting
    - [ ] Implement more comprehensive output validation
    - [ ] Add edge case testing
-   - [ ] Investigate output duration discrepancy
    - [ ] Verify pitch shifting accuracy
 
 ### Phase 3: Real-time Processing
@@ -68,11 +79,17 @@
 - Error handling with custom Error types
 - Duration validation and bug reporting
 - Command-line interface for testing
+- FFI validation and debugging
 
 ### Known Issues
 - Processing loop not terminating (possible infinite loop)
-- Output duration shorter than expected
-- Potential issues with frame calculation in pitch shifting
+- Output duration shorter than expected:
+  - Target: 30s, Expected: 30s (fixed), Actual: ~7.6s
+  - Possible causes:
+    - Frame calculation discrepancy
+    - Incorrect output buffer handling
+    - Potential early termination in processing loop
+    - Need to verify frame advancement logic
 - Need to verify FFI struct layout matches C++ side
 - Need to validate pitch shifting accuracy
 - Possible issue with flushed state detection
@@ -83,10 +100,13 @@
 - Copy and Clone traits for FFI structs
 - Proper error propagation
 - Input validation for pitch and speed parameters
+- FFI struct size validation
+- Debug logging for parameter tracking
 
 ### Recent Improvements
-- Added semitone-based pitch shifting interface
-- Implemented duration calculation helpers
+- Added FFI struct size validation
+- Implemented debug logging for FFI calls
+- Fixed pitch shifting duration calculation
 - Added automated bug reporting
 - Enhanced logging for debugging
 - Added command-line arguments for testing
@@ -94,10 +114,10 @@
 - Added detailed state tracking and validation
 
 ### Debug Strategy
-1. Track state transitions:
-   - Monitor flushed state changes
-   - Log grain boundaries
-   - Validate position updates
+1. Track FFI communication:
+   - Monitor struct sizes and layouts
+   - Log parameter values
+   - Track function call sequence
 2. Verify memory management:
    - Check resource cleanup
    - Monitor memory usage
@@ -106,3 +126,13 @@
    - Track chunk processing
    - Monitor frame counts
    - Verify output generation
+
+### Recent Findings
+- Output duration validation reveals consistent shortfall:
+  - Processing completes but generates less output than expected
+  - Chunk processing appears normal but output accumulation may be incomplete
+  - Frame calculations and buffer handling need review
+  - Position advancement logic may need adjustment
+  - Zero output frames occurring in some chunks
+- Added FFI validation to catch potential memory layout issues
+- Implemented comprehensive debug logging for FFI communication
