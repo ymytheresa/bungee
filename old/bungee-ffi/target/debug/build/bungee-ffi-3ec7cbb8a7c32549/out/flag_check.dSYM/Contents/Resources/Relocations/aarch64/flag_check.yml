@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/flag_check'
+relocations:     []
+...

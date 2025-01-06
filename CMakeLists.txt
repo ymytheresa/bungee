@@ -1,4 +1,3 @@
-
 set(BUNGEE_VERSION 0.0.0 CACHE STRING "Bungee version string")
 set(BUNGEE_SELF_TEST 0 CACHE STRING "Enable Bungee self tests (0=off, 1=fast, 2=full)")
 option(BUNGEE_BUILD_STATIC_LIBRARIES "Build static, not dynamic, Bungee libraries" OFF)
@@ -10,7 +9,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 # Bungee library target: "bungee_library"
 file(GLOB BUNGEE_LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/bungee/*.h")
-add_custom_command(OUTPUT version.cpp _ COMMAND ${CMAKE_COMMAND} -DVERSION_NAMESPACE=Bungee -DGIT_CWD=${CMAKE_CURRENT_SOURCE_DIR} -DVERSION_CPP=version.cpp -P ${CMAKE_CURRENT_SOURCE_DIR}/version.cmake)
 set(BUNGEE_LIBRARY_SOURCES
   src/Synthesis.cpp
   src/Basic.cpp
@@ -24,15 +22,15 @@ set(BUNGEE_LIBRARY_SOURCES
   src/Timing.cpp
   src/Window.cpp
   src/Assert.cpp
-  ${CMAKE_CURRENT_BINARY_DIR}/version.cpp
+  bungee/bungee_c.cpp
 )
+
 if(BUNGEE_BUILD_STATIC_LIBRARIES)
-  add_library(bungee_library STATIC ${BUNGEE_LIBRARY_HEADERS} ${BUNGEE_LIBRARY_SOURCES})
+  add_library(bungee_library STATIC ${BUNGEE_LIBRARY_HEADERS} ${BUNGEE_LIBRARY_SOURCES} bungee/bungee_c.h)
 else()
-  add_library(bungee_library SHARED ${BUNGEE_LIBRARY_HEADERS} ${BUNGEE_LIBRARY_SOURCES})
+  add_library(bungee_library SHARED ${BUNGEE_LIBRARY_HEADERS} ${BUNGEE_LIBRARY_SOURCES} bungee/bungee_c.h)
 endif()
-#set_target_properties(bungee_library PROPERTIES 
-#  OUTPUT_NAME bungee)
+
 target_include_directories(bungee_library PUBLIC 
   .)
 target_include_directories(bungee_library PRIVATE 
@@ -97,11 +95,13 @@ if (APPLE)
     )
   set_source_files_properties(
     ${BUNGEE_LIBRARY_HEADERS} 
+    bungee/bungee_c.h
     PROPERTIES
     MACOSX_PACKAGE_LOCATION Headers/bungee)
 else()
   install(FILES 
     ${BUNGEE_LIBRARY_HEADERS}
+    bungee/bungee_c.h
     DESTINATION ${CMAKE_INSTALL_PREFIX}/include/bungee)
 endif()
 install(TARGETS bungee_library

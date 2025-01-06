@@ -1,0 +1,4 @@
+/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-277e991e45c321b1/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/foo.dir
+/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-277e991e45c321b1/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/boo.dir
+/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-277e991e45c321b1/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/edit_cache.dir
+/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-277e991e45c321b1/out/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles/rebuild_cache.dir

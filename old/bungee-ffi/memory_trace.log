@@ -1,0 +1,486 @@
+   Compiling core-foundation-sys v0.8.7
+warning: bungee-ffi@0.1.0: Building for target: aarch64-apple-darwin
+warning: bungee-ffi@0.1.0: Host architecture: aarch64-apple-darwin
+warning: bungee-ffi@0.1.0: C++ compilation flags:
+warning: bungee-ffi@0.1.0:   -O0
+warning: bungee-ffi@0.1.0:   -ffunction-sections
+warning: bungee-ffi@0.1.0:   -fdata-sections
+warning: bungee-ffi@0.1.0:   -fPIC
+warning: bungee-ffi@0.1.0:   -gdwarf-2
+warning: bungee-ffi@0.1.0:   -fno-omit-frame-pointer
+warning: bungee-ffi@0.1.0:   --target=arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0:   -I
+warning: bungee-ffi@0.1.0:   ..
+warning: bungee-ffi@0.1.0:   -I
+warning: bungee-ffi@0.1.0:   ../bungee
+warning: bungee-ffi@0.1.0:   -I
+warning: bungee-ffi@0.1.0:   ../src
+warning: bungee-ffi@0.1.0:   -I
+warning: bungee-ffi@0.1.0:   ../submodules
+warning: bungee-ffi@0.1.0:   -I
+warning: bungee-ffi@0.1.0:   /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:   -std=c++20
+warning: bungee-ffi@0.1.0:   -fvisibility=default
+warning: bungee-ffi@0.1.0:   -fPIC
+warning: bungee-ffi@0.1.0:   -v
+warning: bungee-ffi@0.1.0:   -DEIGEN_NO_DEBUG
+warning: bungee-ffi@0.1.0:   -DNDEBUG
+warning: bungee-ffi@0.1.0:   -DEIGEN_MPL2_ONLY
+warning: bungee-ffi@0.1.0:   -DEIGEN_MAX_ALIGN_BYTES=32
+warning: bungee-ffi@0.1.0:   -Dbungee_library_EXPORTS
+warning: bungee-ffi@0.1.0:   -DDEBUG_FFI
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name wrapper.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/97cc2182c72ccc3b-wrapper.o -x c++ wrapper.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Basic.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Basic.o -x c++ ../src/Basic.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Assert.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Assert.o -x c++ ../src/Assert.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Fourier.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Fourier.o -x c++ ../src/Fourier.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Grain.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Grain.o -x c++ ../src/Grain.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Grains.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Grains.o -x c++ ../src/Grains.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Input.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Input.o -x c++ ../src/Input.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Output.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Output.o -x c++ ../src/Output.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Partials.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Partials.o -x c++ ../src/Partials.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Stretch.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Stretch.o -x c++ ../src/Stretch.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Synthesis.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Synthesis.o -x c++ ../src/Synthesis.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Timing.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Timing.o -x c++ ../src/Timing.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name Window.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/3fe7ec008ebac6f3-Window.o -x c++ ../src/Window.cpp
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name kiss_fft.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/d4c580e7568b5449-kiss_fft.o -x c++ ../submodules/kissfft/kiss_fft.c
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+warning: bungee-ffi@0.1.0: Apple clang version 16.0.0 (clang-1600.0.26.3)
+warning: bungee-ffi@0.1.0: Target: arm64-apple-macosx15.0
+warning: bungee-ffi@0.1.0: Thread model: posix
+warning: bungee-ffi@0.1.0: InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+warning: bungee-ffi@0.1.0: clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
+warning: bungee-ffi@0.1.0:  "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name kiss_fftr.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.0 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +lse -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sha2 -target-feature +sha3 -target-feature +neon -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-abi darwinpcs -debug-info-kind=standalone -dwarf-version=2 -debugger-tuning=lldb -target-linker-version 1115.7.3 -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/16 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I .. -I ../bungee -I ../src -I ../submodules -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -D EIGEN_NO_DEBUG -D NDEBUG -D EIGEN_MPL2_ONLY -D EIGEN_MAX_ALIGN_BYTES=32 -D bungee_library_EXPORTS -D DEBUG_FFI -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/16/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -O0 -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -std=c++20 -fdeprecated-macro -fdebug-compilation-dir=/Users/bubu/Doc/Github/bungee/bungee-ffi -ferror-limit 19 -fvisibility=default -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fno-implicit-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-3ec7cbb8a7c32549/out/d4c580e7568b5449-kiss_fftr.o -x c++ ../submodules/kissfft/kiss_fftr.c
+warning: bungee-ffi@0.1.0: clang -cc1 version 16.0.0 (clang-1600.0.26.3) default target arm64-apple-darwin24.3.0
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+warning: bungee-ffi@0.1.0: ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+warning: bungee-ffi@0.1.0: #include "..." search starts here:
+warning: bungee-ffi@0.1.0: #include <...> search starts here:
+warning: bungee-ffi@0.1.0:  ..
+warning: bungee-ffi@0.1.0:  ../bungee
+warning: bungee-ffi@0.1.0:  ../src
+warning: bungee-ffi@0.1.0:  ../submodules
+warning: bungee-ffi@0.1.0:  /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/lib/clang/16/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/usr/include
+warning: bungee-ffi@0.1.0:  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+warning: bungee-ffi@0.1.0: End of search list.
+   Compiling iana-time-zone v0.1.61
+   Compiling chrono v0.4.39
+   Compiling bungee-ffi v0.1.0 (/Users/bubu/Doc/Github/bungee/bungee-ffi)
+warning: unused import: `warn`
+ --> src/ffi.rs:7:18
+  |
+7 | use log::{debug, warn};
+  |                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `memoffset`
+ --> src/ffi.rs:8:5
+  |
+8 | use memoffset;
+  |     ^^^^^^^^^
+
+warning: unused import: `std::cell::Cell`
+  --> src/ffi.rs:10:5
+   |
+10 | use std::cell::Cell;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+   --> src/lib.rs:105:9
+    |
+105 |         unsafe {
+    |         ^^^^^^ unnecessary `unsafe` block
+    |
+    = note: `#[warn(unused_unsafe)]` on by default
+
+warning: unnecessary `unsafe` block
+   --> src/lib.rs:137:21
+    |
+137 |         let chunk = unsafe {
+    |                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> src/lib.rs:183:9
+    |
+183 |         unsafe {
+    |         ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> src/lib.rs:210:9
+    |
+210 |         unsafe {
+    |         ^^^^^^ unnecessary `unsafe` block
+
+warning: unused variable: `total_frames`
+   --> src/lib.rs:274:59
+    |
+274 |     pub fn track_progress(&self, processed_frames: usize, total_frames: usize, request: &Request) -> bool {
+    |                                                           ^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_total_frames`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: function `validate_ffi_sizes` is never used
+  --> src/ffi.rs:89:10
+   |
+89 | const fn validate_ffi_sizes() {
+   |          ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: method `log_debug` is never used
+   --> src/ffi.rs:156:12
+    |
+155 | impl Bungee_OutputChunk {
+    | ----------------------- method in this implementation
+156 |     pub fn log_debug(&self, prefix: &str) {
+    |            ^^^^^^^^^
+
+warning: `bungee-ffi` (lib) generated 10 warnings (run `cargo fix --lib -p bungee-ffi` to apply 3 suggestions)
+warning: unused variable: `expected_size`
+   --> examples/wav_test.rs:125:41
+    |
+125 | fn validate_buffer(chunk: &OutputChunk, expected_size: usize) -> bool {
+    |                                         ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_expected_size`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: function `analyze_frequency` is never used
+  --> examples/wav_test.rs:83:4
+   |
+83 | fn analyze_frequency(samples: &[f32], sample_rate: u32) -> Vec<(f32, f32)> {
+   |    ^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `validate_buffer` is never used
+   --> examples/wav_test.rs:125:4
+    |
+125 | fn validate_buffer(chunk: &OutputChunk, expected_size: usize) -> bool {
+    |    ^^^^^^^^^^^^^^^
+
+warning: function `get_padded_grain` is never used
+   --> examples/wav_test.rs:489:4
+    |
+489 | fn get_padded_grain(input: &[f32], begin: i32, end: i32) -> Vec<f32> {
+    |    ^^^^^^^^^^^^^^^^
+
+warning: `bungee-ffi` (example "wav_test") generated 4 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.13s
+     Running `target/debug/examples/wav_test`
+
+thread 'main' has overflowed its stack
+fatal runtime error: stack overflow

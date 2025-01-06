@@ -1,35 +1,31 @@
-//! Error handling for the Bungee library wrapper
+use thiserror::Error;
 
-use std::fmt;
-
-/// Errors that can occur during Bungee operations
-#[derive(Debug)]
-pub enum Error {
-    /// Failed to initialize the Bungee stretcher
-    InitializationError(String),
+#[derive(Error, Debug)]
+pub enum BungeeError {
+    #[error("Null pointer encountered")]
+    NullPointer,
     
-    /// Invalid parameters provided to a function
-    InvalidParameters(String),
+    #[error("Invalid parameter")]
+    InvalidParam,
     
-    /// Error during audio processing
-    ProcessingError(String),
+    #[error("Memory allocation failed")]
+    Memory,
     
-    /// Buffer allocation or management error
-    BufferError(String),
+    #[error("Processing error")]
+    Processing,
+    
+    #[error("Unknown error: {0}")]
+    Unknown(i32),
 }
 
-impl std::error::Error for Error {}
-
-impl fmt::Display for Error {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Error::InitializationError(msg) => write!(f, "Failed to initialize Bungee: {}", msg),
-            Error::InvalidParameters(msg) => write!(f, "Invalid parameters: {}", msg),
-            Error::ProcessingError(msg) => write!(f, "Processing error: {}", msg),
-            Error::BufferError(msg) => write!(f, "Buffer error: {}", msg),
+impl BungeeError {
+    pub(crate) fn from_raw(error: i32) -> Self {
+        match error {
+            -1 => BungeeError::NullPointer,
+            -2 => BungeeError::InvalidParam,
+            -3 => BungeeError::Memory,
+            -4 => BungeeError::Processing,
+            other => BungeeError::Unknown(other),
         }
     }
-}
-
-/// Result type for Bungee operations
-pub type Result<T> = std::result::Result<T, Error>; 
+} 
