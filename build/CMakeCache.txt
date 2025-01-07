@@ -14,15 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-//Build static, not dynamic, Bungee libraries
-BUNGEE_BUILD_STATIC_LIBRARIES:BOOL=OFF
-
-//Enable Bungee self tests (0=off, 1=fast, 2=full)
-BUNGEE_SELF_TEST:STRING=0
-
-//Bungee version string
-BUNGEE_VERSION:STRING=0.0.0
-
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -35,24 +26,6 @@ CMAKE_BUILD_TYPE:STRING=
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
-
-//CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/c++
-
-//Flags used by the CXX compiler during all build types.
-CMAKE_CXX_FLAGS:STRING=
-
-//Flags used by the CXX compiler during DEBUG builds.
-CMAKE_CXX_FLAGS_DEBUG:STRING=-g
-
-//Flags used by the CXX compiler during MINSIZEREL builds.
-CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
-
-//Flags used by the CXX compiler during RELEASE builds.
-CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
-
-//Flags used by the CXX compiler during RELWITHDEBINFO builds.
-CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
 CMAKE_C_COMPILER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/cc
@@ -158,16 +131,16 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=bungee
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=0.0.0
+CMAKE_PROJECT_VERSION:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MAJOR:STATIC=0
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MINOR:STATIC=0
+CMAKE_PROJECT_VERSION_MINOR:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+CMAKE_PROJECT_VERSION_PATCH:STATIC=
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=
@@ -237,21 +210,6 @@ CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-CMAKE_WARN_DEPRECATED:BOOL=OFF
-
-//Principal datatype of kissfft: double, float (default), int16_t,
-// int32_t, simd
-KISSFFT_DATATYPE:STRING=float
-
-//Install destination of kissfft cmake modules
-KISSFFT_INSTALL_CMAKE:FILEPATH=/cmake/kissfft
-
-//Build kissfft with OpenMP support
-KISSFFT_OPENMP:BOOL=OFF
-
-//Use alloca instead of malloc
-KISSFFT_USE_ALLOCA:BOOL=OFF
-
 //Value Computed by CMake
 bungee_BINARY_DIR:STATIC=/Users/bubu/Doc/Github/bungee/build
 
@@ -260,15 +218,6 @@ bungee_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 bungee_SOURCE_DIR:STATIC=/Users/bubu/Doc/Github/bungee
-
-//Value Computed by CMake
-kissfft_BINARY_DIR:STATIC=/Users/bubu/Doc/Github/bungee/build/submodules/kissfft
-
-//Value Computed by CMake
-kissfft_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-kissfft_SOURCE_DIR:STATIC=/Users/bubu/Doc/Github/bungee/submodules/kissfft
 
 
 ########################
@@ -295,18 +244,6 @@ CMAKE_COMMAND:INTERNAL=/opt/homebrew/bin/cmake
 CMAKE_CPACK_COMMAND:INTERNAL=/opt/homebrew/bin/cpack
 //Path to ctest program executable.
 CMAKE_CTEST_COMMAND:INTERNAL=/opt/homebrew/bin/ctest
-//ADVANCED property for variable: CMAKE_CXX_COMPILER
-CMAKE_CXX_COMPILER-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS
-CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_DEBUG
-CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_MINSIZEREL
-CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELEASE
-CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
-CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER
 CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS
@@ -369,7 +306,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -414,14 +351,4 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: KISSFFT_INSTALL_CMAKE
-KISSFFT_INSTALL_CMAKE-ADVANCED:INTERNAL=1
-//Build pkg-config files
-KISSFFT_PKGCONFIG:INTERNAL=OFF
-//Build kissfft as static (ON) or shared library (OFF)
-KISSFFT_STATIC:INTERNAL=ON
-//Build kissfft tests
-KISSFFT_TEST:INTERNAL=OFF
-//Build kissfft command-line tools
-KISSFFT_TOOLS:INTERNAL=OFF
 

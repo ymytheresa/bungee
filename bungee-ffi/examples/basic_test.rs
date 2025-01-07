@@ -1,16 +1,16 @@
-use bungee_ffi::{Config, Stretcher};
+use bungee_ffi::{SampleRates, Request, Stretcher, Bungee_OutputChunk};
+use std::ptr;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Create a simple configuration
-    let config = Config {
-        sample_rate: 44100,
-        channels: 2,
-        time_ratio: 1.5, // 1.5x slower
-        pitch_scale: 1.0, // Keep original pitch
+    // Create sample rates configuration
+    let rates = SampleRates {
+        input: 44100,
+        output: 44100,
     };
 
-    // Create a new stretcher
-    let mut stretcher = Stretcher::new(config)?;
+    // Create a new stretcher (stereo)
+    let mut stretcher = Stretcher::new(rates, 2)?;
+    println!("Using Bungee version: {}", stretcher.version());
 
     // Create some dummy input data (1 second of 440Hz sine wave)
     let sample_rate = 44100;
@@ -26,17 +26,65 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         input[i*2+1] = sample;   // Right channel
     }
 
+    // Configure initial request (1.5x slower)
+    let mut request = Request {
+        position: 0.0,
+        speed: 1.5,    // 1.5x slower
+        pitch: 1.0,    // Keep original pitch
+        reset: true,   // Initial grain
+    };
+
+    // Prepare for processing
+    stretcher.preroll(&mut request);
+
     // Create output buffer (1.5x size for time stretching)
     let output_size = (num_samples as f32 * 1.5) as usize;
     let mut output = vec![0.0f32; output_size];
+    let mut output_pos = 0;
 
-    // Process the audio
-    let (frames_used, frames_generated) = stretcher.process(&input, &mut output)?;
-    println!("Processed {} input frames into {} output frames", frames_used, frames_generated);
+    // Process in grains
+    while !stretcher.is_flushed() && output_pos < output_size {
+        // Get required input range for this grain
+        let (begin, end) = stretcher.specify_grain(&request);
+        
+        // Skip if this is a flush grain
+        if begin >= end {
+            continue;
+        }
 
-    // Flush any remaining samples
-    let additional_frames = stretcher.flush(&mut output[frames_generated*2..])?;
-    println!("Flushed {} additional frames", additional_frames);
+        // Get the input slice for this grain
+        let begin = begin as usize * 2; // *2 for stereo
+        let end = end as usize * 2;     // *2 for stereo
+        let input_slice = if begin < input.len() && end <= input.len() {
+            &input[begin..end]
+        } else {
+            break;
+        };
+
+        // Analyze the grain
+        stretcher.analyse_grain(input_slice, 1);
+
+        // Prepare output chunk
+        let remaining = output_size - output_pos;
+        let mut output_chunk = Bungee_OutputChunk {
+            data: output[output_pos..].as_mut_ptr(),
+            frameCount: (remaining / 2) as i32,
+            channelStride: 1,
+            request: [ptr::null_mut(), ptr::null_mut()],
+        };
+
+        // Synthesize the grain
+        stretcher.synthesise_grain(&mut output_chunk);
+        output_pos += output_chunk.frameCount as usize * 2; // *2 for stereo
+
+        // Prepare next grain
+        request.reset = false;
+        stretcher.next(&mut request);
+    }
+
+    println!("Processed {} samples into {} samples", num_samples, output_pos);
+    println!("Time-stretched by factor of {}", request.speed);
+    println!("Flushed: {}", stretcher.is_flushed());
 
     Ok(())
 } 

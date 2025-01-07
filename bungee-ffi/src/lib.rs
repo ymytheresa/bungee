@@ -3,7 +3,6 @@
 #![allow(non_snake_case)]
 
 mod error;
-mod ffi;
 
 use std::ptr::NonNull;
 use thiserror::Error;
@@ -13,114 +12,151 @@ pub use error::BungeeError;
 // Include the bindgen generated bindings
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-/// A safe wrapper around BungeeStretcher
+/// A safe wrapper around Bungee_Stretcher
 pub struct Stretcher {
-    inner: NonNull<BungeeStretcher>,
+    inner: NonNull<std::ffi::c_void>,
+    vtable: Bungee_Stretcher_FunctionTable,
 }
 
-/// Configuration for the stretcher
+/// Sample rates configuration
 #[derive(Debug, Clone)]
-pub struct Config {
-    pub sample_rate: u32,
-    pub channels: u32,
-    pub time_ratio: f32,
-    pub pitch_scale: f32,
+pub struct SampleRates {
+    pub input: i32,
+    pub output: i32,
+}
+
+/// Request configuration for a grain
+#[derive(Debug, Clone)]
+pub struct Request {
+    pub position: f64,  // Frame offset in input audio
+    pub speed: f64,     // 1.0 = normal speed
+    pub pitch: f64,     // 1.0 = normal pitch
+    pub reset: bool,    // Reset stretcher state
+}
+
+impl From<Request> for Bungee_Request {
+    fn from(req: Request) -> Self {
+        Self {
+            position: req.position,
+            speed: req.speed,
+            pitch: req.pitch,
+            reset: req.reset,
+        }
+    }
+}
+
+impl From<SampleRates> for Bungee_SampleRates {
+    fn from(rates: SampleRates) -> Self {
+        Self {
+            input: rates.input,
+            output: rates.output,
+        }
+    }
 }
 
 impl Stretcher {
-    /// Create a new stretcher instance
-    pub fn new(config: Config) -> Result<Self, BungeeError> {
-        let c_config = BungeeConfig {
-            sample_rate: config.sample_rate,
-            channels: config.channels,
-            time_ratio: config.time_ratio,
-            pitch_scale: config.pitch_scale,
-        };
-
-        let mut error = 0;
-        // SAFETY: We pass valid pointers and check the result
-        let ptr = unsafe { bungee_create(&c_config, &mut error) };
+    /// Create a new stretcher instance using the Basic implementation
+    pub fn new(rates: SampleRates, channels: i32) -> Result<Self, BungeeError> {
+        // SAFETY: This is a C function that returns a struct of function pointers
+        let vtable = unsafe { Bungee_Stretcher_getFunctionTable() };
         
-        if error != 0 {
-            return Err(BungeeError::from_raw(error));
-        }
-
+        // SAFETY: We pass valid parameters and check the result
+        let ptr = unsafe { 
+            (vtable.create)(rates.into(), channels, 0)
+        };
+        
         NonNull::new(ptr)
-            .map(|inner| Self { inner })
+            .map(|inner| Self { inner, vtable })
             .ok_or(BungeeError::NullPointer)
     }
 
-    /// Process audio data
-    pub fn process(
-        &mut self,
-        input: &[f32],
-        output: &mut [f32],
-    ) -> Result<(usize, usize), BungeeError> {
-        let mut frames_used = 0;
-        let mut frames_generated = 0;
-
-        let input_frames = input.len() as usize / self.channels() as usize;
-        let output_frames = output.len() as usize / self.channels() as usize;
-
-        // SAFETY: We ensure all pointers are valid and arrays are properly sized
-        let result = unsafe {
-            bungee_process(
-                self.inner.as_ptr(),
-                input.as_ptr(),
-                input_frames,
-                output.as_mut_ptr(),
-                output_frames,
-                &mut frames_used,
-                &mut frames_generated,
-            )
-        };
-
-        if result != 0 {
-            return Err(BungeeError::from_raw(result));
-        }
-
-        Ok((frames_used, frames_generated))
-    }
-
-    /// Flush any remaining samples
-    pub fn flush(&mut self, output: &mut [f32]) -> Result<usize, BungeeError> {
-        let mut frames_generated = 0;
-        let output_frames = output.len() as usize / self.channels() as usize;
-
-        // SAFETY: We ensure output buffer is valid and properly sized
-        let result = unsafe {
-            bungee_flush(
-                self.inner.as_ptr(),
-                output.as_mut_ptr(),
-                output_frames,
-                &mut frames_generated,
-            )
-        };
-
-        if result != 0 {
-            return Err(BungeeError::from_raw(result));
-        }
-
-        Ok(frames_generated)
-    }
-
-    /// Reset the stretcher state
-    pub fn reset(&mut self) -> Result<(), BungeeError> {
-        // SAFETY: We ensure the stretcher pointer is valid
-        let result = unsafe { bungee_reset(self.inner.as_ptr()) };
+    /// Create a new stretcher instance using the Pro implementation
+    pub fn new_pro(rates: SampleRates, channels: i32) -> Result<Self, BungeeError> {
+        // SAFETY: This is a C function that returns a struct of function pointers
+        let vtable = unsafe { BungeePro_Stretcher_getFunctionTable() };
         
-        if result != 0 {
-            return Err(BungeeError::from_raw(result));
-        }
-
-        Ok(())
+        // SAFETY: We pass valid parameters and check the result
+        let ptr = unsafe { 
+            (vtable.create)(rates.into(), channels, 0)
+        };
+        
+        NonNull::new(ptr)
+            .map(|inner| Self { inner, vtable })
+            .ok_or(BungeeError::NullPointer)
     }
 
-    /// Get the number of channels
-    pub fn channels(&self) -> u32 {
-        // This would need to be implemented in the C layer
-        // For now we'll return a placeholder
-        2
+    /// Get the maximum number of input frames that might be requested
+    pub fn max_input_frame_count(&self) -> i32 {
+        // SAFETY: self.inner is guaranteed to be valid
+        unsafe {
+            (self.vtable.maxInputFrameCount)(self.inner.as_ptr())
+        }
+    }
+
+    /// Prepare request position for initial processing
+    pub fn preroll(&self, request: &mut Request) {
+        let mut c_request: Bungee_Request = request.clone().into();
+        // SAFETY: self.inner and request are guaranteed to be valid
+        unsafe {
+            (self.vtable.preroll)(self.inner.as_ptr(), &mut c_request);
+        }
+        request.position = c_request.position;
+    }
+
+    /// Prepare request for the next grain
+    pub fn next(&self, request: &mut Request) {
+        let mut c_request: Bungee_Request = request.clone().into();
+        // SAFETY: self.inner and request are guaranteed to be valid
+        unsafe {
+            (self.vtable.next)(self.inner.as_ptr(), &mut c_request);
+        }
+        request.position = c_request.position;
+    }
+
+    /// Specify a grain of audio and get required input range
+    pub fn specify_grain(&mut self, request: &Request) -> (i32, i32) {
+        // SAFETY: self.inner and request are guaranteed to be valid
+        let chunk = unsafe {
+            (self.vtable.specifyGrain)(self.inner.as_ptr(), &request.clone().into())
+        };
+        (chunk.begin, chunk.end)
+    }
+
+    /// Analyze the current grain
+    pub fn analyse_grain(&mut self, data: &[f32], channel_stride: isize) {
+        // SAFETY: self.inner and data are guaranteed to be valid
+        unsafe {
+            (self.vtable.analyseGrain)(
+                self.inner.as_ptr(),
+                data.as_ptr(),
+                channel_stride,
+            );
+        }
+    }
+
+    /// Synthesize the processed grain
+    pub fn synthesise_grain(&mut self, output: &mut Bungee_OutputChunk) {
+        // SAFETY: self.inner and output are guaranteed to be valid
+        unsafe {
+            (self.vtable.synthesiseGrain)(self.inner.as_ptr(), output);
+        }
+    }
+
+    /// Check if all grains have been processed
+    pub fn is_flushed(&self) -> bool {
+        // SAFETY: self.inner is guaranteed to be valid
+        unsafe {
+            (self.vtable.isFlushed)(self.inner.as_ptr())
+        }
+    }
+
+    /// Get the library version
+    pub fn version(&self) -> &str {
+        // SAFETY: This returns a null-terminated C string
+        unsafe {
+            let c_str = std::ffi::CStr::from_ptr((self.vtable.version)());
+            c_str.to_str().unwrap_or("unknown")
+        }
     }
 }
 
@@ -128,7 +164,7 @@ impl Drop for Stretcher {
     fn drop(&mut self) {
         // SAFETY: self.inner is guaranteed to be non-null and valid
         unsafe {
-            bungee_destroy(self.inner.as_ptr());
+            (self.vtable.destroy)(self.inner.as_ptr());
         }
     }
 }

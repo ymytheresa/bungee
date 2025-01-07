@@ -39,35 +39,30 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/local/bungee.framework")
+   "/usr/local/include/bungee/bungee_c.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local" TYPE DIRECTORY FILES "/Users/bubu/Doc/Github/bungee/build/bungee.framework" USE_SOURCE_PERMISSIONS)
-  if(EXISTS "$ENV{DESTDIR}/usr/local/bungee.framework/Versions/0.0.0/bungee" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/bungee.framework/Versions/0.0.0/bungee")
-    if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/Library/Developer/CommandLineTools/usr/bin/strip" -x "$ENV{DESTDIR}/usr/local/bungee.framework/Versions/0.0.0/bungee")
-    endif()
-  endif()
+  file(INSTALL DESTINATION "/usr/local/include/bungee" TYPE FILE FILES "/Users/bubu/Doc/Github/bungee/bungee/bungee_c.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/local/sample/main.cpp;/usr/local/sample/cxxopts.hpp")
+   "/usr/local/library/libbungee_c.a")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/sample" TYPE FILE FILES
-    "/Users/bubu/Doc/Github/bungee/cmd/main.cpp"
-    "/Users/bubu/Doc/Github/bungee/submodules/cxxopts/include/cxxopts.hpp"
-    )
+  file(INSTALL DESTINATION "/usr/local/library" TYPE STATIC_LIBRARY FILES "/Users/bubu/Doc/Github/bungee/build/libbungee_c.a")
+  if(EXISTS "$ENV{DESTDIR}/usr/local/library/libbungee_c.a" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/library/libbungee_c.a")
+    execute_process(COMMAND "/Library/Developer/CommandLineTools/usr/bin/ranlib" "$ENV{DESTDIR}/usr/local/library/libbungee_c.a")
+  endif()
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT

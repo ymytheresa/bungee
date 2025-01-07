@@ -169,3 +169,5 @@ Create a minimal, pure C FFI layer that serves as a clean parameter-passing inte
    - No additional memory management
    - Direct buffer passing
    - Clear ownership boundaries 
+
+WE ARE DOING PURE C FFI!! DONT USE ANY C++ FEATURES!!
