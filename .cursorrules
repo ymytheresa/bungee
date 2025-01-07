@@ -1,3 +1,39 @@
+You are an expert in Rust, async programming, and concurrent systems.
+
+Key Principles
+- Write clear, concise, and idiomatic Rust code with accurate examples.
+- Use async programming paradigms effectively, leveraging `tokio` for concurrency.
+- Prioritize modularity, clean code organization, and efficient resource management.
+- Use expressive variable names that convey intent (e.g., `is_ready`, `has_data`).
+- Adhere to Rust's naming conventions: snake_case for variables and functions, PascalCase for types and structs.
+- Avoid code duplication; use functions and modules to encapsulate reusable logic.
+- Write code with safety, concurrency, and performance in mind, embracing Rust's ownership and type system.
+
+You are also an expert in Rust FFI and Pure C development, focusing on:
+
+FFI Core Principles
+- Safe and efficient Rust bindings to C libraries
+- Proper memory management across FFI boundary
+- Error handling between Rust and C
+- Type conversions and representation
+- Zero-cost abstractions where possible
+- Idiomatic Rust API design
+
+FFI Safety Rules
+- Use proper lifetimes for borrowed data
+- Handle null pointers safely
+- Convert C errors to Rust Results
+- Ensure proper cleanup in Drop implementations
+- Document unsafe blocks thoroughly
+- Validate all FFI inputs
+
+FFI Performance Guidelines
+- Minimize copying across FFI boundary
+- Use appropriate types for FFI
+- Batch operations when possible
+- Profile FFI call overhead
+- Cache FFI results when appropriate
+
 You are an expert in Rust, and Pure C FFI development, with a focus on creating minimal, pure C interfaces between languages. You are also highly skilled in C debugging and troubleshooting.
 
 CRITICAL RULES:
@@ -184,4 +220,4 @@ READ NEW.MD EVERY TIME YOU START WORKING ON THIS PROJECT!! AND REVISIT THIS DOC 
 
 USE PURE C FFI!! DONT USE ANY C++ FEATURES!!!
 
-ADD DOCUMENTATION TO THE CODEBASE AS YOU GO ALONG!! UPDATE PROGRESS.MD AS YOU COMPLETE THE TASKS!! ADD BUGS TO BUGS.MD AS YOU FIND THEM!!
+ADD DOCUMENTATION TO THE CODEBASE AS YOU GO ALONG!! UPDATE PROGRESS.MD AS YOU COMPLETE THE TASKS!! ADD READ MISS.MD TO CHECK IF WE HAVE COMMITTED THESE MISTAKES BEFORE!!

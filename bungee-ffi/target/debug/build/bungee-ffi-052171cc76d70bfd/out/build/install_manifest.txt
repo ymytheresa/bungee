@@ -1,0 +1,2 @@
+/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/include/bungee/bungee_c.h
+/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library/libbungee_c.a

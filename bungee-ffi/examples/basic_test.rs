@@ -1,5 +1,4 @@
-use bungee_ffi::{SampleRates, Request, Stretcher, Bungee_OutputChunk};
-use std::ptr;
+use bungee_ffi::{SampleRates, Request, Stretcher, bungee_output_chunk_t};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Create sample rates configuration
@@ -10,7 +9,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Create a new stretcher (stereo)
     let mut stretcher = Stretcher::new(rates, 2)?;
-    println!("Using Bungee version: {}", stretcher.version());
 
     // Create some dummy input data (1 second of 440Hz sine wave)
     let sample_rate = 44100;
@@ -35,7 +33,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     // Prepare for processing
-    stretcher.preroll(&mut request);
+    stretcher.preroll(&mut request)?;
 
     // Create output buffer (1.5x size for time stretching)
     let output_size = (num_samples as f32 * 1.5) as usize;
@@ -45,7 +43,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Process in grains
     while !stretcher.is_flushed() && output_pos < output_size {
         // Get required input range for this grain
-        let (begin, end) = stretcher.specify_grain(&request);
+        let (begin, end) = stretcher.specify_grain(&input, num_samples/2)?;
         
         // Skip if this is a flush grain
         if begin >= end {
@@ -62,24 +60,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         };
 
         // Analyze the grain
-        stretcher.analyse_grain(input_slice, 1);
+        stretcher.analyse_grain(input_slice, 1)?;
 
         // Prepare output chunk
         let remaining = output_size - output_pos;
-        let mut output_chunk = Bungee_OutputChunk {
+        let mut output_chunk = bungee_output_chunk_t {
             data: output[output_pos..].as_mut_ptr(),
-            frameCount: (remaining / 2) as i32,
-            channelStride: 1,
-            request: [ptr::null_mut(), ptr::null_mut()],
+            frame_count: (remaining / 2) as i32,
+            channel_stride: 1,
         };
 
         // Synthesize the grain
-        stretcher.synthesise_grain(&mut output_chunk);
-        output_pos += output_chunk.frameCount as usize * 2; // *2 for stereo
+        stretcher.synthesise_grain(&mut output_chunk)?;
+        output_pos += output_chunk.frame_count as usize * 2; // *2 for stereo
 
         // Prepare next grain
         request.reset = false;
-        stretcher.next(&mut request);
+        stretcher.next(&mut request)?;
     }
 
     println!("Processed {} samples into {} samples", num_samples, output_pos);

@@ -39,33 +39,30 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/bungee.framework")
+   "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/include/bungee/bungee_c.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out" TYPE DIRECTORY FILES "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/bungee.framework" USE_SOURCE_PERMISSIONS)
-  if(EXISTS "$ENV{DESTDIR}/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/bungee.framework/Versions/0.0.0/bungee" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/bungee.framework/Versions/0.0.0/bungee")
-    execute_process(COMMAND "/usr/bin/ranlib" "$ENV{DESTDIR}/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/bungee.framework/Versions/0.0.0/bungee")
-  endif()
+  file(INSTALL DESTINATION "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/include/bungee" TYPE FILE FILES "/Users/bubu/Doc/Github/bungee/bungee/bungee_c.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/sample/main.cpp;/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/sample/cxxopts.hpp")
+   "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library/libbungee_c.a")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/sample" TYPE FILE FILES
-    "/Users/bubu/Doc/Github/bungee/cmd/main.cpp"
-    "/Users/bubu/Doc/Github/bungee/submodules/cxxopts/include/cxxopts.hpp"
-    )
+  file(INSTALL DESTINATION "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library" TYPE STATIC_LIBRARY FILES "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/libbungee_c.a")
+  if(EXISTS "$ENV{DESTDIR}/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library/libbungee_c.a" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library/libbungee_c.a")
+    execute_process(COMMAND "/usr/bin/ranlib" "$ENV{DESTDIR}/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library/libbungee_c.a")
+  endif()
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT

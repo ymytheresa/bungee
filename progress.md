@@ -1,9 +1,9 @@
 # Bungee FFI Implementation Progress
 
 ## Overview
-Implementation of a pure C FFI layer for the Bungee audio time-stretching library.
-The goal is to provide a minimal, clean interface that can be used from any language
-supporting C FFI, with a focus on Rust bindings.
+The primary goal is to enable Rust to call the Bungee audio time-stretching library effectively and safely.
+This requires implementing a pure C FFI layer that can be called from Rust, along with safe Rust bindings
+that provide an idiomatic API. The C layer serves as a bridge between Rust and the underlying Bungee functionality.
 
 ## Current Status
 
@@ -19,6 +19,16 @@ supporting C FFI, with a focus on Rust bindings.
 - ✓ Successful compilation with pure C compiler
 - ✓ Removed all C++ source files and headers
 - ✓ Generated static library (libbungee_c.a)
+
+### Rust FFI Status
+- ✓ Basic Rust FFI bindings structure
+- ✓ Safe wrapper around C interface
+- ✓ Error type conversions
+- ✓ Memory safety in Rust API
+- [ ] Complete testing of Rust bindings
+- [ ] Example usage from Rust
+- [ ] Documentation for Rust API
+- [ ] Performance validation of FFI calls
 
 ### In Progress
 - [ ] Comprehensive testing

@@ -1,0 +1,70 @@
+cargo:rerun-if-changed=../bungee/bungee_c.h
+cargo:rerun-if-changed=../CMakeLists.txt
+CMAKE_TOOLCHAIN_FILE_aarch64-apple-darwin = None
+CMAKE_TOOLCHAIN_FILE_aarch64_apple_darwin = None
+HOST_CMAKE_TOOLCHAIN_FILE = None
+CMAKE_TOOLCHAIN_FILE = None
+CMAKE_GENERATOR_aarch64-apple-darwin = None
+CMAKE_GENERATOR_aarch64_apple_darwin = None
+HOST_CMAKE_GENERATOR = None
+CMAKE_GENERATOR = None
+CMAKE_PREFIX_PATH_aarch64-apple-darwin = None
+CMAKE_PREFIX_PATH_aarch64_apple_darwin = None
+HOST_CMAKE_PREFIX_PATH = None
+CMAKE_PREFIX_PATH = None
+CMAKE_aarch64-apple-darwin = None
+CMAKE_aarch64_apple_darwin = None
+HOST_CMAKE = None
+CMAKE = None
+running: cd "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build" && CMAKE_PREFIX_PATH="" LC_ALL="C" "cmake" "/Users/bubu/Doc/Github/bungee/bungee-ffi/.." "-DCMAKE_OSX_ARCHITECTURES=arm64" "-DCMAKE_BUILD_TYPE=Release" "-DCMAKE_INSTALL_PREFIX=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out" "-DCMAKE_C_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_C_COMPILER=/usr/bin/cc" "-DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_CXX_COMPILER=/usr/bin/c++" "-DCMAKE_ASM_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_ASM_COMPILER=/usr/bin/cc"
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build
+running: cd "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build" && LC_ALL="C" MAKEFLAGS="-j --jobserver-fds=8,9 --jobserver-auth=8,9" "cmake" "--build" "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build" "--target" "install" "--config" "Debug"
+[100%] Built target bungee_c
+Install the project...
+-- Install configuration: "Release"
+-- Up-to-date: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/include/bungee/bungee_c.h
+-- Installing: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library/libbungee_c.a
+cargo:root=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out
+cargo:rustc-link-search=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/lib
+cargo:rustc-link-search=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library
+cargo:rustc-link-search=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build
+cargo:rustc-link-lib=static=bungee_c
+cargo:rerun-if-env-changed=TARGET
+cargo:rerun-if-env-changed=BINDGEN_EXTRA_CLANG_ARGS_aarch64-apple-darwin
+cargo:rerun-if-env-changed=BINDGEN_EXTRA_CLANG_ARGS_aarch64_apple_darwin
+cargo:rerun-if-env-changed=BINDGEN_EXTRA_CLANG_ARGS
+cargo:rerun-if-changed=../bungee/bungee_c.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/stddef.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_header_macro.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_ptrdiff_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_size_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_wchar_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_null.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_max_align_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_offsetof.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdbool.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdint.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdint.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int8_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int16_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int32_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int64_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uint8_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uint16_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uint32_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uint64_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_symbol_aliasing.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_posix_availability.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/machine/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/arm/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_pthread/_pthread_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_intptr_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/machine/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uintptr_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_intmax_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uintmax_t.h

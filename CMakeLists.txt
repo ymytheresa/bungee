@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.30...3.31)
+cmake_minimum_required(VERSION 3.16...3.27)
 
-project(bungee VERSION ${BUNGEE_VERSION} LANGUAGES C)
+project(bungee VERSION 0.1.0 LANGUAGES C)
 
 # C standard for our FFI layer
 set(CMAKE_C_STANDARD 11)

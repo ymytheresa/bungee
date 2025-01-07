@@ -1,5 +1,13 @@
 # Bungee FFI Project Plan
 
+## Primary Goal
+The main goal of this project is to enable Rust to call the Bungee audio processing library effectively and safely. This means:
+- Creating a pure C FFI layer that Rust can call
+- Ensuring all Bungee functionality is accessible from Rust
+- Providing a safe and idiomatic Rust API
+- Maintaining performance while crossing FFI boundaries
+- Proper error handling between Rust and C
+
 ## Understanding Bungee
 Bungee is a C++ audio time-stretching and pitch-shifting library that:
 - Processes audio in grains (chunks)

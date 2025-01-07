@@ -1,15 +1,7 @@
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/bungee_library.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/bungee_executable.dir
+/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/bungee_c.dir
 /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/edit_cache.dir
 /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/rebuild_cache.dir
 /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/list_install_components.dir
 /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/install.dir
 /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/install/local.dir
 /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/CMakeFiles/install/strip.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/submodules/kissfft/CMakeFiles/kissfft.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/submodules/kissfft/CMakeFiles/edit_cache.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/submodules/kissfft/CMakeFiles/rebuild_cache.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/submodules/kissfft/CMakeFiles/list_install_components.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/submodules/kissfft/CMakeFiles/install.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/submodules/kissfft/CMakeFiles/install/local.dir
-/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build/submodules/kissfft/CMakeFiles/install/strip.dir

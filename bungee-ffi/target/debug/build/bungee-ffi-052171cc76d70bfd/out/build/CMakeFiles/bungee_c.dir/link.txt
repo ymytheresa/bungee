@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbungee_c.a CMakeFiles/bungee_c.dir/bungee/bungee_c.c.o
+/usr/bin/ranlib libbungee_c.a
