@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build",
+  "command": "/usr/bin/cc -DBUNGEE_DEBUG -I/Users/bubu/Doc/Github/bungee  -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0 -g -g -O0 -Wall -Wextra -Wpedantic -std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -o CMakeFiles/bungee_c.dir/bungee/bungee_c.c.o -c /Users/bubu/Doc/Github/bungee/bungee/bungee_c.c",
+  "file": "/Users/bubu/Doc/Github/bungee/bungee/bungee_c.c",
+  "output": "CMakeFiles/bungee_c.dir/bungee/bungee_c.c.o"
+}
+]

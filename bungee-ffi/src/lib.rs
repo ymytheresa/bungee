@@ -10,25 +10,29 @@ pub use error::BungeeError;
 // Include the bindgen generated bindings
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-/// A safe wrapper around bungee_stretcher_t
-pub struct Stretcher {
-    inner: NonNull<bungee_stretcher_t>,
-}
-
-/// Sample rates configuration
-#[derive(Debug, Clone)]
+#[repr(C)]
+#[derive(Debug, Clone, Copy)]
 pub struct SampleRates {
     pub input: i32,
     pub output: i32,
 }
 
-/// Request configuration for a grain
-#[derive(Debug, Clone)]
+impl From<SampleRates> for bungee_sample_rates_t {
+    fn from(rates: SampleRates) -> Self {
+        Self {
+            input_rate: rates.input,
+            output_rate: rates.output,
+        }
+    }
+}
+
+#[repr(C)]
+#[derive(Debug, Clone, Copy)]
 pub struct Request {
-    pub position: f64,  // Frame offset in input audio
-    pub speed: f64,     // 1.0 = normal speed
-    pub pitch: f64,     // 1.0 = normal pitch
-    pub reset: bool,    // Reset stretcher state
+    pub position: f64,
+    pub speed: f64,
+    pub pitch: f64,
+    pub reset: bool,
 }
 
 impl From<Request> for bungee_request_t {
@@ -42,70 +46,49 @@ impl From<Request> for bungee_request_t {
     }
 }
 
-impl From<SampleRates> for bungee_sample_rates_t {
-    fn from(rates: SampleRates) -> Self {
-        Self {
-            input_rate: rates.input,
-            output_rate: rates.output,
-        }
+#[derive(Debug)]
+pub struct Stretcher {
+    inner: NonNull<bungee_stretcher_t>,
+}
+
+/// Initialize the Bungee library
+pub fn init() -> Result<(), BungeeError> {
+    let result = unsafe {
+        bungee_init()
+    };
+    
+    if result == 0 {  // BUNGEE_OK
+        Ok(())
+    } else {
+        Err(result.into())
+    }
+}
+
+/// Clean up the Bungee library
+pub fn cleanup() {
+    unsafe {
+        bungee_cleanup();
     }
 }
 
 impl Stretcher {
     /// Create a new stretcher instance
     pub fn new(rates: SampleRates, channels: i32) -> Result<Self, BungeeError> {
-        // Initialize the library if needed
-        unsafe {
-            if bungee_init() != 0 {
-                return Err(BungeeError::InvalidState);
-            }
-        }
-        
-        // Create the stretcher
-        let ptr = unsafe { 
-            bungee_create(rates.into(), channels)
+        let inner = unsafe {
+            let ptr = bungee_create(rates.into(), channels);
+            NonNull::new(ptr).ok_or(BungeeError::Memory)?
         };
-        
-        NonNull::new(ptr)
-            .map(|inner| Self { inner })
-            .ok_or(BungeeError::NullPointer)
+        Ok(Self { inner })
     }
 
-    /// Get the maximum number of input frames that might be requested
-    pub fn max_input_frame_count(&self) -> usize {
-        unsafe {
-            bungee_max_input_frame_count(self.inner.as_ptr())
-        }
-    }
-
-    /// Prepare request position for initial processing
-    pub fn preroll(&self, request: &mut Request) -> Result<(), BungeeError> {
-        let mut c_request: bungee_request_t = request.clone().into();
-        
-        // SAFETY: self.inner and request are guaranteed to be valid
+    /// Prepare for processing with initial parameters
+    pub fn preroll(&mut self, request: &Request) -> Result<(), BungeeError> {
+        let c_request = bungee_request_t::from(*request);
         let result = unsafe {
-            bungee_preroll(self.inner.as_ptr(), &mut c_request)
+            bungee_preroll(self.inner.as_ptr(), &c_request)
         };
         
         if result == 0 {  // BUNGEE_OK
-            request.position = c_request.position;
-            Ok(())
-        } else {
-            Err(result.into())
-        }
-    }
-
-    /// Prepare request for the next grain
-    pub fn next(&self, request: &mut Request) -> Result<(), BungeeError> {
-        let mut c_request: bungee_request_t = request.clone().into();
-        
-        // SAFETY: self.inner and request are guaranteed to be valid
-        let result = unsafe {
-            bungee_next(self.inner.as_ptr(), &mut c_request)
-        };
-        
-        if result == 0 {  // BUNGEE_OK
-            request.position = c_request.position;
             Ok(())
         } else {
             Err(result.into())
@@ -159,6 +142,26 @@ impl Stretcher {
         };
         
         if result == 0 {  // BUNGEE_OK
+            Ok(())
+        } else {
+            Err(result.into())
+        }
+    }
+
+    /// Advance to the next grain
+    pub fn next(&mut self, request: &mut Request) -> Result<(), BungeeError> {
+        let mut c_request = bungee_request_t::from(*request);
+        let result = unsafe {
+            bungee_next(self.inner.as_ptr(), &mut c_request)
+        };
+        
+        if result == 0 {  // BUNGEE_OK
+            *request = Request {
+                position: c_request.position,
+                speed: c_request.speed,
+                pitch: c_request.pitch,
+                reset: c_request.reset,
+            };
             Ok(())
         } else {
             Err(result.into())

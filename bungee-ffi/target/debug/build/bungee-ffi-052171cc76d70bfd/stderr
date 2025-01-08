@@ -1,1 +1,21 @@
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_ASM_COMPILER
+    CMAKE_ASM_FLAGS
+    CMAKE_CXX_COMPILER
+    CMAKE_CXX_FLAGS
+
+
 make: warning: jobserver unavailable: using -j1.  Add `+' to parent make rule.
+In file included from /Users/bubu/Doc/Github/bungee/bungee/bungee_c.c:10:
+/Users/bubu/Doc/Github/bungee/bungee/bungee_c.h:76:22: warning: no newline at end of file [-Wnewline-eof]
+   76 | #endif // BUNGEE_C_H 
+      |                      ^
+/Users/bubu/Doc/Github/bungee/bungee/bungee_c.c:464:3: warning: no newline at end of file [-Wnewline-eof]
+  464 | } 
+      |   ^
+/Users/bubu/Doc/Github/bungee/bungee/bungee_c.c:44:13: warning: unused function 'create_hann_window' [-Wunused-function]
+   44 | static void create_hann_window(float* window, size_t size) {
+      |             ^~~~~~~~~~~~~~~~~~
+3 warnings generated.

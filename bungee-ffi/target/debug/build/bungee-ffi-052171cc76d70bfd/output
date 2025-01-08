@@ -16,15 +16,23 @@ CMAKE_aarch64-apple-darwin = None
 CMAKE_aarch64_apple_darwin = None
 HOST_CMAKE = None
 CMAKE = None
-running: cd "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build" && CMAKE_PREFIX_PATH="" LC_ALL="C" "cmake" "/Users/bubu/Doc/Github/bungee/bungee-ffi/.." "-DCMAKE_OSX_ARCHITECTURES=arm64" "-DCMAKE_BUILD_TYPE=Release" "-DCMAKE_INSTALL_PREFIX=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out" "-DCMAKE_C_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_C_COMPILER=/usr/bin/cc" "-DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_CXX_COMPILER=/usr/bin/c++" "-DCMAKE_ASM_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_ASM_COMPILER=/usr/bin/cc"
--- Configuring done (0.0s)
+running: cd "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build" && CMAKE_PREFIX_PATH="" LC_ALL="C" "cmake" "/Users/bubu/Doc/Github/bungee/bungee-ffi/.." "-DCMAKE_OSX_ARCHITECTURES=arm64" "-DCMAKE_BUILD_TYPE=Debug" "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" "-DCMAKE_INSTALL_PREFIX=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out" "-DCMAKE_C_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_C_COMPILER=/usr/bin/cc" "-DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_CXX_COMPILER=/usr/bin/c++" "-DCMAKE_ASM_FLAGS= -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx15.0" "-DCMAKE_ASM_COMPILER=/usr/bin/cc"
+-- The C compiler identification is AppleClang 16.0.0.16000026
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (0.3s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build
 running: cd "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build" && LC_ALL="C" MAKEFLAGS="-j --jobserver-fds=8,9 --jobserver-auth=8,9" "cmake" "--build" "/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/build" "--target" "install" "--config" "Debug"
+[ 50%] Building C object CMakeFiles/bungee_c.dir/bungee/bungee_c.c.o
+[100%] Linking C static library libbungee_c.a
 [100%] Built target bungee_c
 Install the project...
--- Install configuration: "Release"
--- Up-to-date: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/include/bungee/bungee_c.h
+-- Install configuration: "Debug"
+-- Installing: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/include/bungee/bungee_c.h
 -- Installing: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/library/libbungee_c.a
 cargo:root=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out
 cargo:rustc-link-search=/Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/lib
@@ -68,3 +76,49 @@ cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/i
 cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uintptr_t.h
 cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_intmax_t.h
 cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uintmax_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/machine/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_va_list.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/machine/types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/arm/types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/arm/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int8_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int16_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int32_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int64_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_u_int8_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_u_int16_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_u_int32_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_u_int64_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_intptr_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uintptr_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_size_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_null.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/stdio.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_printf.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_seek_set.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_ctermid.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_off_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_ssize_t.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/machine/types.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h
+cargo:rerun-if-changed=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types.h
+cargo:warning=Compile commands available at: /Users/bubu/Doc/Github/bungee/bungee-ffi/target/debug/build/bungee-ffi-052171cc76d70bfd/out/compile_commands.json

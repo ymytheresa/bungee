@@ -4,6 +4,16 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
+
+// Debug output control
+#ifdef BUNGEE_DEBUG
+#define BUNGEE_LOG(fmt, ...) fprintf(stderr, "[BUNGEE] " fmt "\n", __VA_ARGS__)
+#define BUNGEE_LOG_SIMPLE(msg) fprintf(stderr, "[BUNGEE] " msg "\n")
+#else
+#define BUNGEE_LOG(fmt, ...) ((void)0)
+#define BUNGEE_LOG_SIMPLE(msg) ((void)0)
+#endif
 
 // Error codes
 typedef enum bungee_error {
